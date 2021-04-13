@@ -5,6 +5,7 @@
     <url>/2021/04/13/Bean/</url>
     <content><![CDATA[<p><code>ConfigurationProperties</code> 接口</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ConfigurationProperties &#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@AliasFor(&quot;prefix&quot;)</span></span><br><span class="line">	<span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@AliasFor(&quot;value&quot;)</span></span><br><span class="line">	<span class="function">String <span class="title">prefix</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 <p>在类名上加上 <code>@ConfigurationProperties</code> 注解，读取 <code>application.properties</code>  配置 <code>Bean</code></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(&quot;spring.datasource&quot;)</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataSourceBean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">spring.datasource.url=jdbc:mysql:<span class="comment">//localhost:3306/kangpan?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC&amp;useAffectedRows=true</span></span><br><span class="line">spring.datasource.username=root</span><br><span class="line">spring.datasource.password=</span><br></pre></td></tr></table></figure>
@@ -89,9 +90,199 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@PropertySource(&quot;classpath:dataSource.properties&quot;)</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;spring.datasource&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataSourcesBean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestRunner</span> <span class="keyword">implements</span> <span class="title">ApplicationRunner</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> DataSourcesBean dataSourcesBean;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(ApplicationArguments args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        log.info(<span class="string">&quot;dataSourcesBean.getUrl():&#123;&#125;&quot;</span>,dataSourcesBean.getUrl());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行项目 打印 <code>url</code></p>
+]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lombok</title>
+    <url>/2021/04/14/Lombok/</url>
+    <content><![CDATA[<table>
+<thead>
+<tr>
+<th align="left">注解</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">@Data</td>
+<td align="left">用在类上，提供<code>Getter、Setter、equals、hasCode、toString</code> 、构造方法（参数：<code>@NonNull和final字段</code>）</td>
+</tr>
+<tr>
+<td align="left">@AllArgsConstructor</td>
+<td align="left">用在类上，提供全参数构造方法</td>
+</tr>
+<tr>
+<td align="left">@NoArgsConstructor</td>
+<td align="left">用在类上，提供无参构造方法</td>
+</tr>
+<tr>
+<td align="left">@RequiredArgsConstructor</td>
+<td align="left">用在类上，提供构造方法（参数：<code>@NonNull和final字段</code>）</td>
+</tr>
+<tr>
+<td align="left">@Value</td>
+<td align="left">用在类上，提供 <code>get、equals、hashCode、toString</code>、全参数构造方法</td>
+</tr>
+<tr>
+<td align="left">@EqualsAndHashCode</td>
+<td align="left">用在类上，提供<code>equals、hasCode</code>方法，继承父类使用 <code>@EqualsAndHashCode(callSuper = true)</code></td>
+</tr>
+<tr>
+<td align="left">@NonNull</td>
+<td align="left">用在字段上，提供无参构造方法，为空则抛出<code>NullPointerException</code></td>
+</tr>
+<tr>
+<td align="left">@Cleanup</td>
+<td align="left">用在字段上，释放资源，<code>try&#123;&#125;finally&#123;&#125;</code></td>
+</tr>
+<tr>
+<td align="left">@SneakyThrows</td>
+<td align="left">用在类上，捕获异常，指定异常<code>@SneakyThrows(Exception.class)</code></td>
+</tr>
+</tbody></table>
 <span id="more"></span>
 
+<blockquote>
+<p>注解 <code>@Getter @Setter</code>，<code>@Getter</code> 支持懒加载 </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.FIELD, ElementType.TYPE&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Getter &#123;</span><br><span class="line">	lombok.<span class="function">AccessLevel <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> lombok.AccessLevel.PUBLIC</span>;</span><br><span class="line">	AnyAnnotation[] onMethod() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">lazy</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.FIELD, ElementType.TYPE&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Setter &#123;</span><br><span class="line">	lombok.<span class="function">AccessLevel <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> lombok.AccessLevel.PUBLIC</span>;</span><br><span class="line">	AnyAnnotation[] onMethod() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">	AnyAnnotation[] onParam() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th align="left">AccessLevel</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">PUBLIC</td>
+<td align="left">生成 <code>public</code> 修饰的 <code>getter    setter</code> 方法</td>
+</tr>
+<tr>
+<td align="left">MODULE</td>
+<td align="left">生成没有修饰符修饰的 <code>getter  setter</code> 方法</td>
+</tr>
+<tr>
+<td align="left">PROTECTED</td>
+<td align="left">生成 <code>protected</code> 修饰的 <code>getter  setter</code> 方法</td>
+</tr>
+<tr>
+<td align="left">PACKAGE</td>
+<td align="left">生成没有修饰符修饰的 <code>getter  setter</code> 方法</td>
+</tr>
+<tr>
+<td align="left">PRIVATE</td>
+<td align="left">生成 <code>private</code> 修饰的 <code>getter  setter</code> 方法</td>
+</tr>
+<tr>
+<td align="left">NONE</td>
+<td align="left">不生成 <code>getter  setter</code> 方法</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注解  <code>@EqualsAndHashCode</code></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> EqualsAndHashCode &#123;</span><br><span class="line">	String[] exclude() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">	String[] of() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">callSuper</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">doNotUseGetters</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">exclude</td>
+<td align="left">在生成的 <code>equals</code> 和 <code>hashCode</code> 方法中排除的字段</td>
+</tr>
+<tr>
+<td align="left">of</td>
+<td align="left">在生成的 <code>equals</code> 和 <code>hashCode</code> 方法中列出的字段</td>
+</tr>
+<tr>
+<td align="left">callSuper</td>
+<td align="left">属性设置为 <code>true</code>，表示父类的 <code>equals</code> 和 <code>hashCode</code> 参与计算，默认为 <code>false</code></td>
+</tr>
+<tr>
+<td align="left">doNotUseGetters</td>
+<td align="left">通常都是通过字段的 <code>getter</code> 方法获取字段值，设置为 <code>true</code>，表示不通过 <code>getter</code> 方法获取，而是直接访问字段值，默认为 <code>false</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注解 <code>@Accessors</code> ，配合 <code>@Setter、@Getter 、@Data </code>注解，用在类上和字段上</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">fluent</td>
+<td align="left">默认为 <code>false</code>，如果为 <code>true</code> 则生成的 <code>getter/setter</code> 方法没有 <code>set/get</code> 前缀，如果为 <code>true</code>, <code>chain</code> 未设置，则 <code>chain</code> 会被设置为 <code>true</code></td>
+</tr>
+<tr>
+<td align="left">chain</td>
+<td align="left">默认为 <code>false</code>， <code>setter</code> 方法返回是 <code>void</code>，如果为 <code>true</code> 则返回<code> this</code>，当 <code>fluent</code> 为 <code>true</code> 时，<code>chain</code> 会设置为 <code>true</code></td>
+</tr>
+<tr>
+<td align="left">prefix</td>
+<td align="left"><code>getter    setter </code>方法时会去掉指定的前缀</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注解 <code>Log</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">注解</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">@CommonsLog</td>
+<td align="left"><code>org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(LogExample.class)</code></td>
+</tr>
+<tr>
+<td align="left">@JBossLog</td>
+<td align="left"><code>org.jboss.logging.Logger log = org.jboss.logging.Logger.getLogger(LogExample.class)</code></td>
+</tr>
+<tr>
+<td align="left">@Log</td>
+<td align="left"><code>java.util.logging.Logger log = java.util.logging.Logger.getLogger(LogExample.class.getName())</code></td>
+</tr>
+<tr>
+<td align="left">@Log4j</td>
+<td align="left"><code>org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(LogExample.class)</code></td>
+</tr>
+<tr>
+<td align="left">@Log4j2</td>
+<td align="left"><code>org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger(LogExample.class)</code></td>
+</tr>
+<tr>
+<td align="left">@Slf4j</td>
+<td align="left"><code>org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(LogExample.class)</code></td>
+</tr>
+<tr>
+<td align="left">@XSlf4j</td>
+<td align="left"><code>org.slf4j.ext.XLogger log = org.slf4j.ext.XLoggerFactory.getXLogger(LogExample.class)</code></td>
+</tr>
+</tbody></table>
+<p>详情见 <a href="https://blog.csdn.net/wb1046329430/article/details/106105767/">使用 Lombok 进行 Java 开发</a><br>使用 <code>@Data</code> 会遇到什么坑，看下 <code>Mybatis</code> 的 <code>PropertyNamer</code> 类 ，<code>methodToProperty</code> 方法转属性</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">methodToProperty</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">   <span class="comment">// is开头的一般是bool类型，直接从第二个(索引)开始截取</span></span><br><span class="line">  <span class="keyword">if</span> (name.startsWith(<span class="string">&quot;is&quot;</span>)) &#123;</span><br><span class="line">    name = name.substring(<span class="number">2</span>);</span><br><span class="line">  <span class="comment">// set get的就从第三个(索引)开始截取</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (name.startsWith(<span class="string">&quot;get&quot;</span>) || name.startsWith(<span class="string">&quot;set&quot;</span>)) &#123;</span><br><span class="line">    name = name.substring(<span class="number">3</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isTrue;</span><br><span class="line">    <span class="keyword">private</span> String mName;</span><br><span class="line">    <span class="keyword">private</span> Boolean isFalse;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Test test = <span class="keyword">new</span> Test();</span><br><span class="line">        test.getMName(); <span class="comment">// mName 属性的 get 方法</span></span><br><span class="line">        test.isTrue(); <span class="comment">// isTrue 属性的  get 方法</span></span><br><span class="line"></span><br><span class="line">        System.out.println(PropertyNamer.methodToProperty(<span class="string">&quot;getMName&quot;</span>)); <span class="comment">// 打印 MName 属性 (错误)</span></span><br><span class="line">        System.out.println(PropertyNamer.methodToProperty(<span class="string">&quot;isTrue&quot;</span>)); <span class="comment">// 打印 true 属性 (错误)</span></span><br><span class="line"></span><br><span class="line">        test.getIsFalse();</span><br><span class="line">        System.out.println(PropertyNamer.methodToProperty(<span class="string">&quot;getIsFalse&quot;</span>)); <span class="comment">// 打印 isFalse 属性  (正确)</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出 <code>Mybatis</code> 把 <code>@Data</code> 生成的方法转属性之后，跟原属性对不上，所以使用的时候， <code>boolean</code> 类型 不要 <code>is加大写字母</code>命名，其它基本类型属性不要 <code>第一个字母小写 第二个字母大写</code> 命名<br>如果类实现 <code>Serializable</code>接口，  <code>boolean</code> 类型的字段命令为  <code>isTrue</code> 的会有问题 ，字段序列号后是 <code>true</code></p>
+<p>如果要 <code>Builder</code> 链式调用父类的字段 ，父类和子类都要加 <code>@SuperBuilder</code><br> <code>Coffee.builder().name(&quot;name&quot;).id(100L).build();</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SuperBuilder</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@EqualsAndHashCode(callSuper = true)</span></span><br><span class="line"><span class="meta">@ToString(callSuper = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Coffee</span> <span class="keyword">extends</span> <span class="title">BaseEntity</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@NotBlank(message = &quot;name can not be null&quot;)</span> <span class="comment">//只能作用在 String 上,不能为null, 而且调用trim()后, 长度必须大于0</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SuperBuilder</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseEntity</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
   </entry>
 </search>
