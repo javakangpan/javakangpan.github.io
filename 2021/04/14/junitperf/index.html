@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="知识改变人生，努力改变自己。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="未来">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="pom 文件引入 &lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;com.github.houbb&#x2F;junitperf --&gt;&lt;dependency&gt;    &lt;groupId&gt;com.github.houbb&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;junitperf&lt;&#x2F;artifactId">
+<meta property="og:type" content="article">
+<meta property="og:title" content="junitperf">
+<meta property="og:url" content="http://example.com/2021/04/14/junitperf/index.html">
 <meta property="og:site_name" content="未来">
-<meta property="og:description" content="知识改变人生，努力改变自己。">
+<meta property="og:description" content="pom 文件引入 &lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;com.github.houbb&#x2F;junitperf --&gt;&lt;dependency&gt;    &lt;groupId&gt;com.github.houbb&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;junitperf&lt;&#x2F;artifactId">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-13T23:53:23.000Z">
+<meta property="article:modified_time" content="2021-04-13T23:54:44.372Z">
 <meta property="article:author" content="康盼">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/archives/2021/">
+<link rel="canonical" href="http://example.com/2021/04/14/junitperf/">
 
 
 <script id="page-configurations">
@@ -38,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | 未来</title>
+  <title>junitperf | 未来</title>
   
 
 
@@ -165,234 +168,98 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 15 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/junitperf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="康盼">
+      <meta itemprop="description" content="知识改变人生，努力改变自己。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="未来">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          junitperf
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-14 07:53:23 / 修改时间：07:54:44" itemprop="dateCreated datePublished" datetime="2021-04-14T07:53:23+08:00">2021-04-14</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-14T08:22:47+08:00"
-              content="2021-04-14">
-          04-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/14/springboot+prometheus+grafana/" itemprop="url">
-            <span itemprop="name">springboot+prometheus+grafana</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-14T08:20:07+08:00"
-              content="2021-04-14">
-          04-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/14/SourceTree/" itemprop="url">
-            <span itemprop="name">SourceTree</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-14T08:16:56+08:00"
-              content="2021-04-14">
-          04-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/14/RestTemplate/" itemprop="url">
-            <span itemprop="name">RestTemplate</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-14T08:13:40+08:00"
-              content="2021-04-14">
-          04-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/14/Redis-+-Lua/" itemprop="url">
-            <span itemprop="name">Redis + Lua</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-14T08:05:27+08:00"
-              content="2021-04-14">
-          04-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/14/Nexus/" itemprop="url">
-            <span itemprop="name">Nexus</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-14T08:01:21+08:00"
-              content="2021-04-14">
-          04-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/14/MySql-Base/" itemprop="url">
-            <span itemprop="name">MySql Base Operate</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-14T07:58:56+08:00"
-              content="2021-04-14">
-          04-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/14/MultiValueMap/" itemprop="url">
-            <span itemprop="name">MultiValueMap</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-14T07:55:15+08:00"
-              content="2021-04-14">
-          04-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/14/Lua-limit/" itemprop="url">
-            <span itemprop="name">Lua limit</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-14T07:53:23+08:00"
-              content="2021-04-14">
-          04-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/14/junitperf/" itemprop="url">
-            <span itemprop="name">junitperf</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-14T07:51:55+08:00"
-              content="2021-04-14">
-          04-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/14/Java8/" itemprop="url">
-            <span itemprop="name">Java8</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <p><code>pom </code>文件引入</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.github.houbb/junitperf --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.houbb<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junitperf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>测试 <code>stringBuilder </code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="meta">@JunitPerfConfig( warmUp = 1000, reporter = &#123;HtmlReporter.class, ConsoleReporter.class&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">            stringBuilder.append(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看下  <code>JunitPerfConfig </code> 类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> JunitPerfConfig &#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">threads</span><span class="params">()</span> <span class="keyword">default</span> 1</span>; <span class="comment">// 执行时使用多少线程执行</span></span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="title">warmUp</span><span class="params">()</span> <span class="keyword">default</span> 0L</span>; <span class="comment">// 准备时间 （单位：毫秒）</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="title">duration</span><span class="params">()</span> <span class="keyword">default</span> 60000L</span>; <span class="comment">// 执行时间 (单位：毫秒)  (不包括准备时间) 默认值1分钟</span></span><br><span class="line"></span><br><span class="line">    Class&lt;? extends StatisticsCalculator&gt; statistics() <span class="keyword">default</span> DefaultStatisticsCalculator.class; <span class="comment">// 统计信息</span></span><br><span class="line"></span><br><span class="line">    Class&lt;? extends Reporter&gt;[] reporter() <span class="keyword">default</span> &#123;ConsoleReporter.class&#125;; <span class="comment">// 报告信息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考 <a target="_blank" rel="noopener" href="https://github.com/houbb/junitperf">junitperf</a></p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/14/Java8/" rel="prev" title="Java8">
+      <i class="fa fa-chevron-left"></i> Java8
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/14/Lua-limit/" rel="next" title="Lua limit">
+      Lua limit <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  
+  
 
 
 

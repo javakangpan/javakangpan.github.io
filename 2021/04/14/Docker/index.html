@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="docker 官方镜像网易云镜像  基本命令  搜索镜像 docker seach  &gt; docker search busyboxNAME                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATEDbusybox">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker">
+<meta property="og:url" content="http://example.com/2021/04/14/Docker/index.html">
+<meta property="og:site_name" content="未来">
+<meta property="og:description" content="docker 官方镜像网易云镜像  基本命令  搜索镜像 docker seach  &gt; docker search busyboxNAME                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATEDbusybox">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-13T23:35:14.000Z">
+<meta property="article:modified_time" content="2021-04-13T23:45:53.090Z">
+<meta property="article:author" content="康盼">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/04/14/Docker/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Docker | 未来</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">未来</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">遇见未知的自己，加油！每一个打工人。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/Docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="康盼">
+      <meta itemprop="description" content="知识改变人生，努力改变自己。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="未来">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-14 07:35:14 / 修改时间：07:45:53" itemprop="dateCreated datePublished" datetime="2021-04-14T07:35:14+08:00">2021-04-14</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a target="_blank" rel="noopener" href="https://hub.docker.com/">docker 官方镜像</a><br><a target="_blank" rel="noopener" href="https://c.163yun.com/hub#/home">网易云镜像</a></p>
+<blockquote>
+<p>基本命令</p>
+</blockquote>
+<p>搜索镜像 docker seach </p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">&gt; docker search <span class="keyword">busybox</span></span><br><span class="line"><span class="keyword">NAME </span>                     DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line"><span class="keyword">busybox </span>                  <span class="keyword">Busybox </span><span class="keyword">base </span>image.                             <span class="number">2168</span>                [OK]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>注：BusyBox 将许多具有共性的小版本的UNIX工具结合到一个单一的可执行文件。这样的集合可以替代大部分常用工具比如的GNU fileutils ， shellutils等工具，BusyBox提供了一个比较完善的环境，可以适用于任何小的嵌入式系统</p>
+<span id="more"></span>
+<ul>
+<li><strong>拉取镜像</strong> docker pull</li>
+<li><strong>查看镜像</strong> docker images</li>
+<li><strong>删除运行或停止的镜像</strong> docker rmi</li>
+<li><strong>运行容器</strong> docker run </li>
+<li><strong>查看运行中的容器</strong> docker ps 或者 docker container ls</li>
+<li><strong>查看所有容器状态</strong> docker ps -a 或者 docker container ls -a<figure class="highlight tap"><table><tr><td class="code"><pre><span class="line">&gt; docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                        PORTS                    NAMES</span><br><span class="line">dc8b9ba2efb6        redis               &quot;docker-entrypoint.s…&quot;  <span class="number"> 7 </span>minutes ago       Created                                                tender_chatterjee</span><br><span class="line">cff3358881a2        redis               &quot;docker-entrypoint.s…&quot;  <span class="number"> 20 </span>minutes ago      Exited (0)<span class="number"> 8 </span>minutes ago                               admiring_vaughan</span><br><span class="line">cc638be418cb        busybox             &quot;sh&quot;                    <span class="number"> 22 </span>minutes ago      Exited (127)<span class="number"> 20 </span>minutes ago                            trusting_yalow</span><br><span class="line">03cd134e1313        redis               &quot;docker-entrypoint.s…&quot;  <span class="number"> 29 </span>minutes ago      Up<span class="number"> 29 </span>minutes                 0.0.0.0:6379-&gt;6379/tcp   competent_galois</span><br><span class="line">950da22b6340        95543f26ca31        &quot;/bin/sh -c &#x27;$&#123;JAVA_…&quot;  <span class="number"> 2 </span>days ago          Exited (143)<span class="number"> 2 </span>days ago                                nexus</span><br><span class="line">1c648c6719db        redis               &quot;docker-entrypoint.s…&quot;  <span class="number"> 5 </span>months ago        Exited (0)<span class="number"> 5 </span>months ago                                redis</span><br></pre></td></tr></table></figure></li>
+<li><strong>停止容器</strong> docker stop</li>
+<li><strong>快速停止容器</strong> docker kill</li>
+<li><strong>启动容器</strong> docker start</li>
+<li><strong>重启容器</strong> docker restart</li>
+<li><strong>暂停容器，容器不占CPU</strong>  docker pause</li>
+<li><strong>暂停恢复</strong> docker unpause</li>
+<li><strong>删除容器</strong> docker rm 容器短ID1，容器短ID2，可以删除多个</li>
+<li><strong>批量删除所有已经退出的容器</strong> <code>docker rm -v $(docker ps -ap -f status=exited)</code></li>
+</ul>
+<blockquote>
+<p>运行容器参数  docker run -d -p 80:8080</p>
+</blockquote>
+<ul>
+<li>-d 后台方式启动容器</li>
+<li>-p 80:8080 端口映射</li>
+<li>–name 容器命名</li>
+<li>–restart 因错误停止或者正常退出将自动重启，docker stop 或者 docker kill 的退出不会自动重启</li>
+<li>–restart=always 无论何种原因退出立即重启</li>
+<li>–restart=on-failure:3 重启3次</li>
+</ul>
+<blockquote>
+<p>进入/退出 容器</p>
+</blockquote>
+<ul>
+<li>attach 直接进入容器启动命令的终端，不会启动新的进程</li>
+<li>exec 在容器中打开新的终端，并且启动新的进程</li>
+<li>exit 退出</li>
+<li>run -it 容器启动后直接进入<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">&gt; docker run -d -it -p <span class="number">6379</span>:<span class="number">6379</span>  redis</span><br><span class="line"><span class="number">03</span>cd134e1313edad3304154282262daa6839bc7bc6f1bed51f3404b09eca3580</span><br><span class="line">docker exec -it <span class="number">03</span>cd bash</span><br><span class="line">root@<span class="number">03</span>cd134e1313:/<span class="comment">#</span></span><br><span class="line">&gt; <span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">&gt; docker run -it redis</span><br><span class="line"><span class="number">1</span>:C <span class="number">07</span> Apr <span class="number">2021</span> <span class="number">13</span>:<span class="number">49</span>:<span class="number">07.859</span> # oO0OoO0OoO0Oo Redis <span class="built_in">is</span> starting oO0OoO0OoO0Oo</span><br><span class="line"><span class="number">1</span>:C <span class="number">07</span> Apr <span class="number">2021</span> <span class="number">13</span>:<span class="number">49</span>:<span class="number">07.859</span> # Redis version=<span class="number">6.0</span><span class="number">.8</span>, bits=<span class="number">64</span>, commit=<span class="number">00000000</span>, modified=<span class="number">0</span>, pid=<span class="number">1</span>, just started</span><br><span class="line"><span class="number">1</span>:C <span class="number">07</span> Apr <span class="number">2021</span> <span class="number">13</span>:<span class="number">49</span>:<span class="number">07.859</span> # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf</span><br><span class="line">                <span class="symbol">_</span>.<span class="symbol">_</span></span><br><span class="line">           <span class="symbol">_</span>.-``<span class="symbol">__</span> &#x27;&#x27;-.<span class="symbol">_</span></span><br><span class="line">      <span class="symbol">_</span>.-``    `.  `<span class="symbol">_</span>.  &#x27;&#x27;-.<span class="symbol">_</span>           Redis <span class="number">6.0</span><span class="number">.8</span> (<span class="number">00000000</span>/<span class="number">0</span>) <span class="number">64</span> bit</span><br><span class="line">  .-`` .-```.  ```\/    <span class="symbol">_</span>.,<span class="symbol">_</span> &#x27;&#x27;-.<span class="symbol">_</span></span><br><span class="line"> (    &#x27;      ,       .-`  | `,    )     Running <span class="keyword">in</span> standalone mode</span><br><span class="line"> |`-.<span class="symbol">_</span>`-...-` <span class="symbol">__</span>...-.``-.<span class="symbol">_</span>|&#x27;` <span class="symbol">_</span>.-&#x27;|     Port: <span class="number">6379</span></span><br><span class="line"> |    `-.<span class="symbol">_</span>   `.<span class="symbol">_</span>    /     <span class="symbol">_</span>.-&#x27;    |     PID: <span class="number">1</span></span><br><span class="line">  `-.<span class="symbol">_</span>    `-.<span class="symbol">_</span>  `-./  <span class="symbol">_</span>.-&#x27;    <span class="symbol">_</span>.-&#x27;</span><br><span class="line"> |`-.<span class="symbol">_</span>`-.<span class="symbol">_</span>    `-.<span class="symbol">__</span>.-&#x27;    <span class="symbol">_</span>.-&#x27;<span class="symbol">_</span>.-&#x27;|</span><br><span class="line"> |    `-.<span class="symbol">_</span>`-.<span class="symbol">_</span>        <span class="symbol">_</span>.-&#x27;<span class="symbol">_</span>.-&#x27;    |           http://redis.io</span><br><span class="line">  `-.<span class="symbol">_</span>    `-.<span class="symbol">_</span>`-.<span class="symbol">__</span>.-&#x27;<span class="symbol">_</span>.-&#x27;    <span class="symbol">_</span>.-&#x27;</span><br><span class="line"> |`-.<span class="symbol">_</span>`-.<span class="symbol">_</span>    `-.<span class="symbol">__</span>.-&#x27;    <span class="symbol">_</span>.-&#x27;<span class="symbol">_</span>.-&#x27;|</span><br><span class="line"> |    `-.<span class="symbol">_</span>`-.<span class="symbol">_</span>        <span class="symbol">_</span>.-&#x27;<span class="symbol">_</span>.-&#x27;    |</span><br><span class="line">  `-.<span class="symbol">_</span>    `-.<span class="symbol">_</span>`-.<span class="symbol">__</span>.-&#x27;<span class="symbol">_</span>.-&#x27;    <span class="symbol">_</span>.-&#x27;</span><br><span class="line">      `-.<span class="symbol">_</span>    `-.<span class="symbol">__</span>.-&#x27;    <span class="symbol">_</span>.-&#x27;</span><br><span class="line">          `-.<span class="symbol">_</span>        <span class="symbol">_</span>.-&#x27;</span><br><span class="line">              `-.<span class="symbol">__</span>.-&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/14/Lombok/" rel="prev" title="Lombok">
+      <i class="fa fa-chevron-left"></i> Lombok
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/14/Cache-Line/" rel="next" title="Cache Line">
+      Cache Line <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="康盼"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">康盼</p>
+  <div class="site-description" itemprop="description">知识改变人生，努力改变自己。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">康盼</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全站共20k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
