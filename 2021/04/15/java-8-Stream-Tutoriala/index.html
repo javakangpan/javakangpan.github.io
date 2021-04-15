@@ -20,30 +20,33 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="知识改变人生，努力改变自己。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="未来">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="Java学习网站 logicbig  java 8 Stream Tutoriala 介绍下几个常用的函数接口 @FunctionalInterfacepublic interface Consumer&lt;T&gt; &amp;#123;    void accept(T t);    default Consumer&lt;T&gt; andThen(Consumer&lt;? super T&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 8 Stream Tutoriala">
+<meta property="og:url" content="http://example.com/2021/04/15/java-8-Stream-Tutoriala/index.html">
 <meta property="og:site_name" content="未来">
-<meta property="og:description" content="知识改变人生，努力改变自己。">
+<meta property="og:description" content="Java学习网站 logicbig  java 8 Stream Tutoriala 介绍下几个常用的函数接口 @FunctionalInterfacepublic interface Consumer&lt;T&gt; &amp;#123;    void accept(T t);    default Consumer&lt;T&gt; andThen(Consumer&lt;? super T&amp;gt">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-15T12:41:28.000Z">
+<meta property="article:modified_time" content="2021-04-15T12:46:20.993Z">
 <meta property="article:author" content="康盼">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/04/15/java-8-Stream-Tutoriala/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>未来</title>
+  <title>java 8 Stream Tutoriala | 未来</title>
   
 
 
@@ -175,91 +178,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/15/When-the-Spring-Boot-Application-is-finished,-then-How-to-open-the-browser-/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼">
-      <meta itemprop="description" content="知识改变人生，努力改变自己。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="未来">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/15/When-the-Spring-Boot-Application-is-finished,-then-How-to-open-the-browser-/" class="post-title-link" itemprop="url">When the Spring Boot Application is finished, then How to open the browser?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-15 21:43:27 / 修改时间：22:49:28" itemprop="dateCreated datePublished" datetime="2021-04-15T21:43:27+08:00">2021-04-15</time>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>实现代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AfterRun</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    Environment environment;</span><br><span class="line">    <span class="meta">@EventListener(&#123;ApplicationReadyEvent.class&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String port = environment.getProperty(<span class="string">&quot;local.server.port&quot;</span>);</span><br><span class="line">        String url = <span class="string">&quot;http://localhost:&quot;</span> + port;</span><br><span class="line">        Runtime.getRuntime().exec(<span class="string">&quot;rundll32 url.dll,FileProtocolHandler &quot;</span> + url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><p><code>Environment</code>即环境，也可以叫做上下文。<code>Environment</code>在容器中是一个抽象的集合，是指应用环境的2个方面：<code>profiles</code>和<code>properties</code>。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Environment</span> <span class="keyword">extends</span> <span class="title">PropertyResolver</span> </span>&#123;</span><br><span class="line">    String[] getActiveProfiles();</span><br><span class="line"></span><br><span class="line">    String[] getDefaultProfiles();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** <span class="doctag">@deprecated</span> */</span></span><br><span class="line">    <span class="meta">@Deprecated</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">acceptsProfiles</span><span class="params">(String... var1)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">acceptsProfiles</span><span class="params">(Profiles var1)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过 <code>environment</code> 获取当前端口拼接 <code>URL</code></p>
-<h3 id="EventListener"><a href="#EventListener" class="headerlink" title="@EventListener"></a>@EventListener</h3><p><code>Spring</code>提供的一个事件监听、订阅的实现，内部实现原理是观察者设计模式；为的就是业务系统逻辑的解耦,提高可扩展性以及可维护性。事件发布者并不需要考虑谁去监听，监听具体的实现内容是什么，发布者的工作只是为了发布事件而已。<br>如下例子，控制台打印 <code>发布的消息:hello</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">implements</span> <span class="title">CommandLineRunner</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        SpringApplication.run(App.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ApplicationContext applicationContext;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(String... args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        applicationContext.publishEvent(<span class="keyword">new</span> MyEvent(<span class="keyword">this</span>,<span class="string">&quot;hello&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyEvent</span> <span class="keyword">extends</span> <span class="title">ApplicationEvent</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Setter</span></span><br><span class="line">    <span class="meta">@Getter</span></span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.getSource();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyEvent</span><span class="params">(Object source,String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(source);</span><br><span class="line">        <span class="keyword">this</span>.message = message;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyListener</span> </span>&#123;</span><br><span class="line">    <span class="meta">@EventListener</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleDemoEvent</span><span class="params">(MyEvent event)</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">&quot;发布的消息:&#123;&#125;&quot;</span>, event.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="ApplicationReadyEvent"><a href="#ApplicationReadyEvent" class="headerlink" title="ApplicationReadyEvent"></a>ApplicationReadyEvent</h3><p><code>spring boot</code>中支持的事件类型如下</p>
-<ul>
-<li><p>ApplicationFailedEvent：该事件为spring boot启动失败时的操作</p>
-</li>
-<li><p>ApplicationPreparedEvent：上下文context准备时触发</p>
-</li>
-<li><p>ApplicationReadyEvent：上下文已经准备完毕的时候触发</p>
-</li>
-<li><p>ApplicationStartedEvent：spring boot 启动监听类</p>
-</li>
-<li><p>SpringApplicationEvent：获取SpringApplication</p>
-</li>
-<li><p>ApplicationEnvironmentPreparedEvent：环境事先准备</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -275,10 +197,9 @@
       <meta itemprop="name" content="未来">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/15/java-8-Stream-Tutoriala/" class="post-title-link" itemprop="url">java 8 Stream Tutoriala</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          java 8 Stream Tutoriala
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -292,6 +213,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -302,7 +230,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Java学习网站 <a target="_blank" rel="noopener" href="https://www.logicbig.com/">logicbig</a></p>
+        <p>Java学习网站 <a target="_blank" rel="noopener" href="https://www.logicbig.com/">logicbig</a></p>
 <p> <a target="_blank" rel="noopener" href="https://www.logicbig.com/tutorials/core-java-tutorial/java-util-stream/stream-api-intro.html">java 8 Stream Tutoriala</a></p>
 <p>介绍下几个常用的函数接口</p>
 <figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Consumer</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T t)</span></span>;</span><br><span class="line">    <span class="keyword">default</span> Consumer&lt;T&gt; andThen(Consumer&lt;? <span class="keyword">super</span> T&gt; <span class="keyword">after</span>) &#123;</span><br><span class="line">        Objects.requireNonNull(<span class="keyword">after</span>);</span><br><span class="line">        <span class="keyword">return</span> (T t) -&gt; &#123; accept(t); after.accept(t); &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -352,571 +280,37 @@
 <p>参考</p>
 <p> <a target="_blank" rel="noopener" href="https://winterbe.com/posts/2014/03/16/java-8-tutorial/">java-8-tutorial</a><br><a target="_blank" rel="noopener" href="https://www.kancloud.cn/hanxt/javacrazy/">恕我直言：你可能真的不会java编程</a></p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/ArrayList/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼">
-      <meta itemprop="description" content="知识改变人生，努力改变自己。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="未来">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/14/ArrayList/" class="post-title-link" itemprop="url">ArrayList</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-14 21:32:24" itemprop="dateCreated datePublished" datetime="2021-04-14T21:32:24+08:00">2021-04-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-15 06:48:13" itemprop="dateModified" datetime="2021-04-15T06:48:13+08:00">2021-04-15</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>ArrayList是实现List接口的动态数组，所谓动态就是它的大小是可变的。</p>
-<p>每个ArrayList实例都有一个容量，该容量是指用来存储列表元素的数组的大小。默认初始容量为10。随着ArrayList中元素的增加，它的容量也会不断的自动增长。</p>
-<p>在每次添加新的元素时，ArrayList都会检查是否需要进行扩容操作，扩容操作带来数据向新数组的重新拷贝，所以如果我们知道具体业务数据量，在构造ArrayList时可以给ArrayList指定一个初始容量，这样就会减少扩容时数据的拷贝问题。当然在添加大量元素前，应用程序也可以使用ensureCapacity操作来增加ArrayList实例的容量，这可以减少递增式再分配的数量。</p>
-<p>注意，ArrayList实现不是同步的。如果多个线程同时访问一个ArrayList实例，而其中至少一个线程从结构上修改了列表，那么它必须保持外部同步。所以为了保证同步，最好的办法是在创建时完成，以防止意外对列表进行不同步的访问：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List list = Collections.synchronizedList(<span class="keyword">new</span> ArrayList(...)); </span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/14/ArrayList/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/springboot+prometheus+grafana/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼">
-      <meta itemprop="description" content="知识改变人生，努力改变自己。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="未来">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/14/springboot+prometheus+grafana/" class="post-title-link" itemprop="url">springboot+prometheus+grafana</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-14 08:22:47 / 修改时间：08:27:39" itemprop="dateCreated datePublished" datetime="2021-04-14T08:22:47+08:00">2021-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>安利一款好用的谷歌<code>json</code>格式化插件 <code>jsonview</code>，地址 <a target="_blank" rel="noopener" href="https://jsonview.com/">https://jsonview.com/</a><br>搭建 <code>springboot</code> 项目 引入 <code>actuator</code> 组件</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/14/springboot+prometheus+grafana/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/14/ArrayList/" rel="prev" title="ArrayList">
+      <i class="fa fa-chevron-left"></i> ArrayList
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/15/When-the-Spring-Boot-Application-is-finished,-then-How-to-open-the-browser-/" rel="next" title="When the Spring Boot Application is finished, then How to open the browser?">
+      When the Spring Boot Application is finished, then How to open the browser? <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/SourceTree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼">
-      <meta itemprop="description" content="知识改变人生，努力改变自己。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="未来">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/14/SourceTree/" class="post-title-link" itemprop="url">SourceTree</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-14 08:20:07 / 修改时间：08:21:42" itemprop="dateCreated datePublished" datetime="2021-04-14T08:20:07+08:00">2021-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">SourceTree</a>SourceTree集成了Git Flow功能，能简单方便的操作和实现常规的工作流程。支持OSX和Windows平台。<a target="_blank" rel="noopener" href="https://support.atlassian.com/sourcetree/">操作文档</a><br>在 <code>gitHub</code> 创建一个仓库 <code>javaBook</code><br>克隆到本地</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/14/SourceTree/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/RestTemplate/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼">
-      <meta itemprop="description" content="知识改变人生，努力改变自己。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="未来">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/14/RestTemplate/" class="post-title-link" itemprop="url">RestTemplate</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-14 08:16:56 / 修改时间：08:18:26" itemprop="dateCreated datePublished" datetime="2021-04-14T08:16:56+08:00">2021-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><code>Spring Cloud</code> 提供了一个接口 <code>DiscoveryClient</code> ， 为 <code>Eureka</code> 或者 <code>consul</code> 等注册中心去实现，  <code>getInstances</code> 方法获取注册的实例，一个实例对应一个工程</p>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="function">List&lt;ServiceInstance&gt; <span class="title">getInstances</span><span class="params">(<span class="keyword">String</span> serviceId)</span></span>;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/14/RestTemplate/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/Redis-+-Lua/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼">
-      <meta itemprop="description" content="知识改变人生，努力改变自己。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="未来">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/14/Redis-+-Lua/" class="post-title-link" itemprop="url">Redis + Lua</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-14 08:13:40 / 修改时间：08:16:32" itemprop="dateCreated datePublished" datetime="2021-04-14T08:13:40+08:00">2021-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>搭建一个 <code>springboot</code> 的项目，引入  <code>spring-boot-starter-parent</code>父组件，<code> spring-boot-starter-web</code>组件， <code>lombok</code>组件，<code>jedis</code>客户端组件   ，谷歌的<code>guava</code> 组件</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/14/Redis-+-Lua/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/Nexus/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼">
-      <meta itemprop="description" content="知识改变人生，努力改变自己。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="未来">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/14/Nexus/" class="post-title-link" itemprop="url">Nexus</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-14 08:05:27 / 修改时间：08:47:53" itemprop="dateCreated datePublished" datetime="2021-04-14T08:05:27+08:00">2021-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><code>nexus repository manager</code> ，<code>nexus </code>的 仓库管理<br><a target="_blank" rel="noopener" href="https://repo.eclipse.org/#welcome">图片链接</a></p>
-<p>使用 <code>nexus </code> 构建 <code>Maven</code> 私服，可以代理远程仓库和部署自己或第三方构件<br>gitHub 地址 <a target="_blank" rel="noopener" href="https://github.com/sonatype/nexus/releases">https://github.com/sonatype/nexus/releases</a><br>官方地址 <a target="_blank" rel="noopener" href="https://www.sonatype.com/">https://www.sonatype.com/</a></p>
-<p>选择 <code>nexus repository</code> 查看 <code>repository</code> 构建架构<br>填写基本信息，邮件会收到验证信息，点击邮件内容的链接验证</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/14/Nexus/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/MySql-Base/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼">
-      <meta itemprop="description" content="知识改变人生，努力改变自己。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="未来">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/14/MySql-Base/" class="post-title-link" itemprop="url">MySql Base Operate</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-14 08:01:21 / 修改时间：08:03:51" itemprop="dateCreated datePublished" datetime="2021-04-14T08:01:21+08:00">2021-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>  Windows服务</p>
-<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 启动MySQL</span></span><br><span class="line">    net <span class="built_in">start</span> mysql</span><br><span class="line"><span class="comment">-- 创建Windows服务</span></span><br><span class="line">    sc <span class="built_in">create</span> mysql binPath= mysqld_bin_path(注意：等号与值之间有空格)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/14/MySql-Base/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/MultiValueMap/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼">
-      <meta itemprop="description" content="知识改变人生，努力改变自己。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="未来">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/14/MultiValueMap/" class="post-title-link" itemprop="url">MultiValueMap</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-14 07:58:56 / 修改时间：08:01:16" itemprop="dateCreated datePublished" datetime="2021-04-14T07:58:56+08:00">2021-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><code>org.springframework.util</code> 包下的 <code>MultiValueMap</code> 接口</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(K key, <span class="meta">@Nullable</span> V value)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>看下 <code>LinkedMultiValueMap</code> 实现</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/14/MultiValueMap/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 

@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="缓存行 Cache Line  CPU 高速缓存中分配的最小存储单位。CPU 缓存分为 Cache L1 L2 L3 一级 二级 三级 缓存，查看本机缓存pom.xml 引入 &lt;dependency&gt;    &lt;groupId&gt;fr.ujm.tse.lt2c.satin&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;cachesize&lt;&#x2F;ar">
+  <meta name="description" content="实现代码： @Configurationpublic class AfterRun &amp;#123;    @Autowired    Environment environment;    @EventListener(&amp;#123;ApplicationReadyEvent.class&amp;#125;)    public void test() throws Exception &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cache Line">
-<meta property="og:url" content="http://example.com/2021/04/14/Cache-Line/index.html">
+<meta property="og:title" content="When the Spring Boot Application is finished, then How to open the browser?">
+<meta property="og:url" content="http://example.com/2021/04/15/When-the-Spring-Boot-Application-is-finished,-then-How-to-open-the-browser-/index.html">
 <meta property="og:site_name" content="未来">
-<meta property="og:description" content="缓存行 Cache Line  CPU 高速缓存中分配的最小存储单位。CPU 缓存分为 Cache L1 L2 L3 一级 二级 三级 缓存，查看本机缓存pom.xml 引入 &lt;dependency&gt;    &lt;groupId&gt;fr.ujm.tse.lt2c.satin&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;cachesize&lt;&#x2F;ar">
+<meta property="og:description" content="实现代码： @Configurationpublic class AfterRun &amp;#123;    @Autowired    Environment environment;    @EventListener(&amp;#123;ApplicationReadyEvent.class&amp;#125;)    public void test() throws Exception &amp;#123;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-13T23:46:47.000Z">
-<meta property="article:modified_time" content="2021-04-14T13:13:00.797Z">
+<meta property="article:published_time" content="2021-04-15T13:43:27.000Z">
+<meta property="article:modified_time" content="2021-04-15T14:49:28.079Z">
 <meta property="article:author" content="康盼">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/04/14/Cache-Line/">
+<link rel="canonical" href="http://example.com/2021/04/15/When-the-Spring-Boot-Application-is-finished,-then-How-to-open-the-browser-/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Cache Line | 未来</title>
+  <title>When the Spring Boot Application is finished, then How to open the browser? | 未来</title>
   
 
 
@@ -185,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/Cache-Line/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/15/When-the-Spring-Boot-Application-is-finished,-then-How-to-open-the-browser-/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Cache Line
+          When the Spring Boot Application is finished, then How to open the browser?
         </h1>
 
         <div class="post-meta">
@@ -209,7 +209,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-14 07:46:47 / 修改时间：21:13:00" itemprop="dateCreated datePublished" datetime="2021-04-14T07:46:47+08:00">2021-04-14</time>
+              <time title="创建时间：2021-04-15 21:43:27 / 修改时间：22:49:28" itemprop="dateCreated datePublished" datetime="2021-04-15T21:43:27+08:00">2021-04-15</time>
             </span>
 
           
@@ -230,18 +230,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>缓存行 <code>Cache Line</code>  <code>CPU</code> 高速缓存中分配的最小存储单位。<code>CPU</code> 缓存分为 <code>Cache L1 L2 L3</code> 一级 二级 三级 缓存，查看本机缓存<br><code>pom.xml</code> 引入</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="section">&lt;dependency&gt;</span></span><br><span class="line">    <span class="section">&lt;groupId&gt;</span><span class="attribute">fr</span>.ujm.tse.lt<span class="number">2</span>c.satin&lt;/groupId&gt;</span><br><span class="line">    <span class="section">&lt;artifactId&gt;</span><span class="attribute">cachesize</span>&lt;/artifactId&gt;</span><br><span class="line">    <span class="section">&lt;version&gt;</span><span class="attribute">0</span>.<span class="number">2</span>.<span class="number">1</span>&lt;/version&gt;</span><br><span class="line"><span class="section">&lt;/dependency&gt;</span></span><br></pre></td></tr></table></figure>
-<p>不同处理器的缓存行 <code>L1 L2 L3</code> 高速缓存行字节宽不一样 有 <code>32</code> 字节和 <code>64</code> 字节</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">CacheInfo info = CacheInfo.getInstance();</span><br><span class="line">CacheLevelInfo cacheLevelInfo = info.getCacheInformation(CacheLevel.L1, CacheType.INSTRUCTION_CACHE);</span><br><span class="line">System.out.println(<span class="string">&quot;L1 Cache info:&quot;</span> + cacheLevelInfo.toString());</span><br></pre></td></tr></table></figure>
-<p>缓存行在内存中加载的地址是连续的 假如缓存行是 <code>64</code> 字节 有两个变量 <code>a</code> 和 <code>b</code> ，<code>a</code> + <code>b</code> 不足 64 字节，那么会在同一个缓存行造成伪共享，处理器修改 <code>a</code> 的时候，其他处理器读取 <code>b</code> 的时候该缓存行是失效的( <code>MESI</code> 协议)，其他处理器不得不重新从系统内存中加载。</p>
-<span id="more"></span>
-<p>处理伪共享 可以采取 <code>padding</code> 方式 ，当字节不足缓存行大小时进行填满  和 <code>Java8</code> 的 <code>@sum.misc.Contended</code> 使两个变量 在不同缓存行中</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@sun</span>.misc.Contended <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">CounterCell</span> </span>&#123;</span><br><span class="line">     <span class="keyword">volatile</span> <span class="keyword">long</span> value;</span><br><span class="line">     CounterCell(<span class="keyword">long</span> x) &#123; value = x; &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p><code>ConcurrentHashMap</code> 的 <code>CounterCell</code> 上加了 <code>@Contended</code> 注解  解决了 <code>++</code> 操作产生伪共享</p>
-<p>看下 <code>padding</code> 实现 , 使 <code>long</code> 变量进行填充</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleProducerSequencerPad</span> <span class="keyword">extends</span> <span class="title">RingBufferProducer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">long</span> p1, p2, p3, p4, p5, p6, p7; <span class="comment">// 4*7 = 28 字节</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleProducerSequencerFields</span> <span class="keyword">extends</span> <span class="title">SingleProducerSequencerPad</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** Set to -1 as sequence starting point */</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">long</span> nextValue = RingBuffer.Sequence.INITIAL_VALUE; <span class="comment">// 28 + 4 = 32 字节</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">long</span> cachedValue = RingBuffer.Sequence.INITIAL_VALUE; <span class="comment">// 32 + 4 = 36 字节</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleProducerSequencer</span> <span class="keyword">extends</span> <span class="title">SingleProducerSequencerFields</span> </span>&#123;</span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">long</span> p1, p2, p3, p4, p5, p6, p7; <span class="comment">// 36 + 28 = 64 字节</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>volatile</code>  也会使处理器缓存回写到内存并且导致其他内存缓存无效，在 <code>64</code> 字节宽的处理器  早期<code>JDK</code>版本采取了追加字节的方式来进行性能优化</p>
+        <p>实现代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AfterRun</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    Environment environment;</span><br><span class="line">    <span class="meta">@EventListener(&#123;ApplicationReadyEvent.class&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String port = environment.getProperty(<span class="string">&quot;local.server.port&quot;</span>);</span><br><span class="line">        String url = <span class="string">&quot;http://localhost:&quot;</span> + port;</span><br><span class="line">        Runtime.getRuntime().exec(<span class="string">&quot;rundll32 url.dll,FileProtocolHandler &quot;</span> + url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><p><code>Environment</code>即环境，也可以叫做上下文。<code>Environment</code>在容器中是一个抽象的集合，是指应用环境的2个方面：<code>profiles</code>和<code>properties</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Environment</span> <span class="keyword">extends</span> <span class="title">PropertyResolver</span> </span>&#123;</span><br><span class="line">    String[] getActiveProfiles();</span><br><span class="line"></span><br><span class="line">    String[] getDefaultProfiles();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** <span class="doctag">@deprecated</span> */</span></span><br><span class="line">    <span class="meta">@Deprecated</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">acceptsProfiles</span><span class="params">(String... var1)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">acceptsProfiles</span><span class="params">(Profiles var1)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过 <code>environment</code> 获取当前端口拼接 <code>URL</code></p>
+<h3 id="EventListener"><a href="#EventListener" class="headerlink" title="@EventListener"></a>@EventListener</h3><p><code>Spring</code>提供的一个事件监听、订阅的实现，内部实现原理是观察者设计模式；为的就是业务系统逻辑的解耦,提高可扩展性以及可维护性。事件发布者并不需要考虑谁去监听，监听具体的实现内容是什么，发布者的工作只是为了发布事件而已。<br>如下例子，控制台打印 <code>发布的消息:hello</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">implements</span> <span class="title">CommandLineRunner</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        SpringApplication.run(App.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ApplicationContext applicationContext;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(String... args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        applicationContext.publishEvent(<span class="keyword">new</span> MyEvent(<span class="keyword">this</span>,<span class="string">&quot;hello&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyEvent</span> <span class="keyword">extends</span> <span class="title">ApplicationEvent</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Setter</span></span><br><span class="line">    <span class="meta">@Getter</span></span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.getSource();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyEvent</span><span class="params">(Object source,String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(source);</span><br><span class="line">        <span class="keyword">this</span>.message = message;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyListener</span> </span>&#123;</span><br><span class="line">    <span class="meta">@EventListener</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleDemoEvent</span><span class="params">(MyEvent event)</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">&quot;发布的消息:&#123;&#125;&quot;</span>, event.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ApplicationReadyEvent"><a href="#ApplicationReadyEvent" class="headerlink" title="ApplicationReadyEvent"></a>ApplicationReadyEvent</h3><p><code>spring boot</code>中支持的事件类型如下</p>
+<ul>
+<li><p>ApplicationFailedEvent：该事件为spring boot启动失败时的操作</p>
+</li>
+<li><p>ApplicationPreparedEvent：上下文context准备时触发</p>
+</li>
+<li><p>ApplicationReadyEvent：上下文已经准备完毕的时候触发</p>
+</li>
+<li><p>ApplicationStartedEvent：spring boot 启动监听类</p>
+</li>
+<li><p>SpringApplicationEvent：获取SpringApplication</p>
+</li>
+<li><p>ApplicationEnvironmentPreparedEvent：环境事先准备</p>
+</li>
+</ul>
 
     </div>
 
@@ -260,13 +272,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/14/Docker/" rel="prev" title="Docker">
-      <i class="fa fa-chevron-left"></i> Docker
+    <a href="/2021/04/15/java-8-Stream-Tutoriala/" rel="prev" title="java 8 Stream Tutoriala">
+      <i class="fa fa-chevron-left"></i> java 8 Stream Tutoriala
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/04/14/Docker%20run%20Apache/" rel="next" title="Docker run Apache">
-      Docker run Apache <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -325,6 +334,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Environment"><span class="nav-number">1.</span> <span class="nav-text">Environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EventListener"><span class="nav-number">2.</span> <span class="nav-text">@EventListener</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ApplicationReadyEvent"><span class="nav-number">3.</span> <span class="nav-text">ApplicationReadyEvent</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
