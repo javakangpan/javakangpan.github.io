@@ -22,13 +22,13 @@
 
   <meta name="description" content="实现代码： @Configurationpublic class AfterRun &amp;#123;    @Autowired    Environment environment;    @EventListener(&amp;#123;ApplicationReadyEvent.class&amp;#125;)    public void test() throws Exception &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="When the Spring Boot Application is finished, then How to open the browser?">
+<meta property="og:title" content="Spring Boot Application is finished, How to open the browser?">
 <meta property="og:url" content="http://example.com/2021/04/15/When-the-Spring-Boot-Application-is-finished,-then-How-to-open-the-browser-/index.html">
 <meta property="og:site_name" content="未来">
 <meta property="og:description" content="实现代码： @Configurationpublic class AfterRun &amp;#123;    @Autowired    Environment environment;    @EventListener(&amp;#123;ApplicationReadyEvent.class&amp;#125;)    public void test() throws Exception &amp;#123;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-15T13:43:27.000Z">
-<meta property="article:modified_time" content="2021-04-15T14:49:28.079Z">
+<meta property="article:modified_time" content="2021-04-15T23:00:28.464Z">
 <meta property="article:author" content="康盼">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>When the Spring Boot Application is finished, then How to open the browser? | 未来</title>
+  <title>Spring Boot Application is finished, How to open the browser? | 未来</title>
   
 
 
@@ -198,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          When the Spring Boot Application is finished, then How to open the browser?
+          Spring Boot Application is finished, How to open the browser?
         </h1>
 
         <div class="post-meta">
@@ -207,10 +207,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-15 21:43:27 / 修改时间：22:49:28" itemprop="dateCreated datePublished" datetime="2021-04-15T21:43:27+08:00">2021-04-15</time>
+              <time title="创建时间：2021-04-15 21:43:27" itemprop="dateCreated datePublished" datetime="2021-04-15T21:43:27+08:00">2021-04-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-16 07:00:28" itemprop="dateModified" datetime="2021-04-16T07:00:28+08:00">2021-04-16</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -232,6 +238,7 @@
       
         <p>实现代码：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AfterRun</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    Environment environment;</span><br><span class="line">    <span class="meta">@EventListener(&#123;ApplicationReadyEvent.class&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String port = environment.getProperty(<span class="string">&quot;local.server.port&quot;</span>);</span><br><span class="line">        String url = <span class="string">&quot;http://localhost:&quot;</span> + port;</span><br><span class="line">        Runtime.getRuntime().exec(<span class="string">&quot;rundll32 url.dll,FileProtocolHandler &quot;</span> + url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 <h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><p><code>Environment</code>即环境，也可以叫做上下文。<code>Environment</code>在容器中是一个抽象的集合，是指应用环境的2个方面：<code>profiles</code>和<code>properties</code>。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Environment</span> <span class="keyword">extends</span> <span class="title">PropertyResolver</span> </span>&#123;</span><br><span class="line">    String[] getActiveProfiles();</span><br><span class="line"></span><br><span class="line">    String[] getDefaultProfiles();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** <span class="doctag">@deprecated</span> */</span></span><br><span class="line">    <span class="meta">@Deprecated</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">acceptsProfiles</span><span class="params">(String... var1)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">acceptsProfiles</span><span class="params">(Profiles var1)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过 <code>environment</code> 获取当前端口拼接 <code>URL</code></p>
