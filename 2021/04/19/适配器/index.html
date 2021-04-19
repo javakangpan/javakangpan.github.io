@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="20210419120812">
-<meta property="og:url" content="http://example.com/2021/04/19/20210419120812/index.html">
+  <meta name="description" content="介绍AOP中，使用 Advice（通知）来实现被代理类的功能,使用代理模式，代理类在方法中通过执行拦截器，实现面向切面编程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Adapter">
+<meta property="og:url" content="http://example.com/2021/04/19/%E9%80%82%E9%85%8D%E5%99%A8/index.html">
 <meta property="og:site_name" content="未来">
+<meta property="og:description" content="介绍AOP中，使用 Advice（通知）来实现被代理类的功能,使用代理模式，代理类在方法中通过执行拦截器，实现面向切面编程。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/javakangpan/Read-Write/blob/master/100.jpg?raw=true">
 <meta property="article:published_time" content="2021-04-19T04:08:12.000Z">
-<meta property="article:modified_time" content="2021-04-19T11:41:50.277Z">
+<meta property="article:modified_time" content="2021-04-19T13:43:05.809Z">
 <meta property="article:author" content="康盼">
-<meta property="article:tag" content="me">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/javakangpan/Read-Write/blob/master/100.jpg?raw=true">
 
-<link rel="canonical" href="http://example.com/2021/04/19/20210419120812/">
+<link rel="canonical" href="http://example.com/2021/04/19/%E9%80%82%E9%85%8D%E5%99%A8/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>20210419120812 | 未来</title>
+  <title>Adapter | 未来</title>
   
 
 
@@ -185,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/19/20210419120812/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/19/%E9%80%82%E9%85%8D%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          20210419120812
+          Adapter
         </h1>
 
         <div class="post-meta">
@@ -209,7 +209,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-19 12:08:12 / 修改时间：19:41:50" itemprop="dateCreated datePublished" datetime="2021-04-19T12:08:12+08:00">2021-04-19</time>
+              <time title="创建时间：2021-04-19 12:08:12 / 修改时间：21:43:05" itemprop="dateCreated datePublished" datetime="2021-04-19T12:08:12+08:00">2021-04-19</time>
             </span>
 
           
@@ -230,7 +230,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://github.com/javakangpan/Read-Write/blob/master/100.jpg?raw=true" alt="房贷首付"></p>
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p><code>AOP</code>中，使用 <code>Advice</code>（通知）来实现被代理类的功能,使用代理模式，代理类在方法中通过执行拦截器，实现面向切面编程。</p>
+<span id="more"></span>
+<p>举个例子 前置处理 备注：源代码中省去了一些代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Advice</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BeforeAdvice</span> <span class="keyword">extends</span> <span class="title">Advice</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Advisor</span> </span>&#123;</span><br><span class="line">	<span class="function">Advice <span class="title">getAdvice</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MethodBeforeAdvice</span> <span class="keyword">extends</span> <span class="title">BeforeAdvice</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">before</span><span class="params">(Method method, Object[] args, <span class="meta">@Nullable</span> Object target)</span> <span class="keyword">throws</span> Throwable</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现<code>Advisor</code>接口的子类适配，获取 <code>Advice</code> 通知</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MethodBeforeAdviceAdapter</span> <span class="keyword">implements</span> <span class="title">AdvisorAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> MethodInterceptor <span class="title">getInterceptor</span><span class="params">(Advisor advisor)</span> </span>&#123;</span><br><span class="line">		MethodBeforeAdvice advice = (MethodBeforeAdvice) advisor.getAdvice();</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> MethodBeforeAdviceInterceptor(advice);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过 <code>MethodBeforeAdviceInterceptor</code> 类 ，调用了 <code>before</code> 方法，实现方法前拦截</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MethodBeforeAdviceInterceptor</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span>, <span class="title">BeforeAdvice</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(MethodInvocation mi)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.advice.before(mi.getMethod(), mi.getArguments(), mi.getThis());</span><br><span class="line">		<span class="keyword">return</span> mi.proceed();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>查看源代码<code>before</code>最终调用的是 <code>Method</code> 类的 <code>invoke</code> 方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object obj, Object... args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    MethodAccessor ma = methodAccessor;             </span><br><span class="line">    <span class="keyword">return</span> ma.invoke(obj, args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通知通过代码如何实现AOP"><a href="#通知通过代码如何实现AOP" class="headerlink" title="通知通过代码如何实现AOP"></a>通知通过代码如何实现AOP</h3><p>举例 <code>spring AOP</code> <code>JDK</code> 动态代理方式的实现</p>
+<ul>
+<li>配置 <code>MethodBeforeAdvice</code> 的实现类</li>
+<li><code>JDK</code>通过实现接口的方式实现动态代理，那么定义一个接口</li>
+<li>编写接口实现类</li>
+<li>配置代理类，通过 <code>ProxyFactoryBean</code> 生成需要的<ul>
+<li>拦截器（这里举例的是前置通知 <code>MethodBeforeAdvice</code> 的实现类）</li>
+<li>代理接口(<code>JDK</code>通过实现接口的方式实现动态代理，定义的接口)</li>
+<li>目标对象(接口实现类)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyFactoryBean</span> <span class="keyword">extends</span> <span class="title">ProxyCreatorSupport</span></span></span><br><span class="line"><span class="class">		<span class="keyword">implements</span> <span class="title">FactoryBean</span>&lt;<span class="title">Object</span>&gt;, <span class="title">BeanClassLoaderAware</span>, <span class="title">BeanFactoryAware</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setInterceptorNames</span><span class="params">(String... interceptorNames)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.setInterceptorNames(interceptorNames);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">     <span class="comment">//没有设置目标对象的代理接口，则使用CGLIB创建代理</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setProxyInterfaces</span><span class="params">(Class&lt;?&gt;[] proxyInterfaces)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.setProxyInterfaces(proxyInterfaces);</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTargetName</span><span class="params">(String targetName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.setTargetName(targetName);</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
 
     </div>
 
@@ -240,7 +267,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/me/" rel="tag"># me</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
           </div>
 
         
@@ -311,6 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E7%9F%A5%E9%80%9A%E8%BF%87%E4%BB%A3%E7%A0%81%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0AOP"><span class="nav-number">2.</span> <span class="nav-text">通知通过代码如何实现AOP</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -332,7 +360,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -376,7 +404,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共25.7k字</span>
+  <span class="post-count">全站共26.1k字</span>
 </div>
 
         
