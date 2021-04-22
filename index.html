@@ -212,7 +212,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-22 22:13:26" itemprop="dateModified" datetime="2021-04-22T22:13:26+08:00">2021-04-22</time>
+                <time title="修改时间：2021-04-22 22:31:21" itemprop="dateModified" datetime="2021-04-22T22:31:21+08:00">2021-04-22</time>
               </span>
 
           
@@ -231,6 +231,7 @@
 <li>定义全属性的 <code>ResultMap</code></li>
 <li>使用 <code>&lt;sql&gt;&lt;/sql&gt;</code> 抽离片段<br><code>&lt;include&gt;&lt;/include&gt;</code> 重复使用 <ul>
 <li>表名 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;tableName&quot;</span>&gt;</span></span><br><span class="line">    表名</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>order by 条件<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;condition&quot;</span>&gt;</span></span><br><span class="line">    表字段</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li>表字段<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">&lt;sql <span class="built_in">id</span>=<span class="string">&quot;allFields&quot;</span>&gt;</span><br><span class="line">    <span class="built_in">id</span>,</span><br><span class="line">    <span class="built_in">name</span>,</span><br><span class="line">    ...</span><br><span class="line">    表字段</span><br><span class="line">&lt;/sql&gt;</span><br></pre></td></tr></table></figure></li>
 <li>表字段赋值<figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;allValues&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    #</span><span class="template-variable">&#123;id,jdbcType = BIGINT&#125;</span><span class="xml">,...</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
 <li>主键赋值<figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;uniquekeyField&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    #</span><span class="template-variable">&#123;id,jdbcType = BIGINT&#125;</span><span class="xml">；</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
