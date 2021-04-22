@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="项目中CRUD，写好XML很重要个人经常使用的模板，纯手打，有写错的地方请指出  定义全属性的 ResultMap 使用 &lt;sql&gt;&lt;&#x2F;sql&gt; 抽离片段&lt;include&gt;&lt;&#x2F;include&gt; 重复使用  表名 &lt;sql id&#x3D;&quot;tableName&quot;&gt;    表名&lt;&#x2F;sql&gt; 表字段&lt;sql id&#x3D;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis">
+<meta property="og:url" content="http://example.com/2021/04/21/mybatis/index.html">
+<meta property="og:site_name" content="未来">
+<meta property="og:description" content="项目中CRUD，写好XML很重要个人经常使用的模板，纯手打，有写错的地方请指出  定义全属性的 ResultMap 使用 &lt;sql&gt;&lt;&#x2F;sql&gt; 抽离片段&lt;include&gt;&lt;&#x2F;include&gt; 重复使用  表名 &lt;sql id&#x3D;&quot;tableName&quot;&gt;    表名&lt;&#x2F;sql&gt; 表字段&lt;sql id&#x3D;&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-21T13:37:01.000Z">
+<meta property="article:modified_time" content="2021-04-22T14:13:26.240Z">
+<meta property="article:author" content="康盼">
+<meta property="article:tag" content="Mybatis">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/04/21/mybatis/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>mybatis | 未来</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">未来</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">遇见未知的自己，加油！每一个打工人。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/21/mybatis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="康盼">
+      <meta itemprop="description" content="知识改变人生，努力改变自己。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="未来">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          mybatis
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-21 21:37:01" itemprop="dateCreated datePublished" datetime="2021-04-21T21:37:01+08:00">2021-04-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-22 22:13:26" itemprop="dateModified" datetime="2021-04-22T22:13:26+08:00">2021-04-22</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>项目中<code>CRUD</code>，写好<code>XML</code>很重要<br>个人经常使用的模板，纯手打，有写错的地方请指出</p>
+<ul>
+<li>定义全属性的 <code>ResultMap</code></li>
+<li>使用 <code>&lt;sql&gt;&lt;/sql&gt;</code> 抽离片段<br><code>&lt;include&gt;&lt;/include&gt;</code> 重复使用 <ul>
+<li>表名 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;tableName&quot;</span>&gt;</span></span><br><span class="line">    表名</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>表字段<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">&lt;sql <span class="built_in">id</span>=<span class="string">&quot;allFields&quot;</span>&gt;</span><br><span class="line">    <span class="built_in">id</span>,</span><br><span class="line">    <span class="built_in">name</span>,</span><br><span class="line">    ...</span><br><span class="line">    表字段</span><br><span class="line">&lt;/sql&gt;</span><br></pre></td></tr></table></figure></li>
+<li>表字段赋值<figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;allValues&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    #</span><span class="template-variable">&#123;id,jdbcType = BIGINT&#125;</span><span class="xml">,...</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+<li>主键赋值<figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;uniquekeyField&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    #</span><span class="template-variable">&#123;id,jdbcType = BIGINT&#125;</span><span class="xml">；</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<span id="more"></span></li>
+<li>条件赋值<figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;setValues&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;id != null&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">        id = #</span><span class="template-variable">&#123;id,jdbcType = BIGINT&#125;</span></span><br><span class="line"><span class="xml">   <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="xml">   ...</span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+<li>搜索条件赋值 <code>prefixOverrides</code> 当第一个条件不满足，自动去除<code>AND 或者 OR</code>  <figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">sql</span> id = &quot;searchFields&quot;&gt;</span><br><span class="line">    trim prefix=&quot;where&quot; prefixOverrides=&quot;and|or&quot;&gt;  </span><br><span class="line">        &lt;<span class="keyword">if</span> test=&quot;name!=null&quot;&gt;  </span><br><span class="line">            <span class="keyword">AND</span> <span class="type">name</span> <span class="keyword">like</span> concat(<span class="string">&#x27;%&#x27;</span>,#&#123;<span class="type">name</span>,jdbcType=<span class="type">VARCHAR</span>&#125;,<span class="string">&#x27;%&#x27;</span>)</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;  </span><br><span class="line">    &lt;/trim&gt;  </span><br><span class="line">&lt;/<span class="keyword">sql</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li>分页查询<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id = <span class="string">&quot;findByPage&quot;</span> resultMap = <span class="string">&quot;resultMap&quot;</span>&gt;</span><br><span class="line">    <span class="keyword">select</span> &lt;<span class="keyword">include</span> refid = <span class="string">&quot;allFields&quot;</span> /&gt;</span><br><span class="line">    <span class="keyword">from</span> 表名</span><br><span class="line">    &lt;<span class="keyword">include</span> refid = <span class="string">&quot;searchFields&quot;</span>&gt;</span><br><span class="line">    <span class="keyword">limit</span> #&#123;开始&#125;,#&#123;分页大小&#125;</span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li>查询数量<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id = <span class="string">&quot;findByCount&quot;</span>&gt;</span><br><span class="line">    <span class="keyword">select</span> <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">from</span> 表名</span><br><span class="line">    &lt;<span class="keyword">include</span> refid = <span class="string">&quot;searchFields&quot;</span>&gt;</span><br><span class="line"> &lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li>查询所有字段<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id=<span class="string">&quot;findAllFields&quot;</span>&gt;</span><br><span class="line">   <span class="keyword">select</span> &lt;<span class="keyword">include</span> refid = <span class="string">&quot;allFields&quot;</span>&gt;</span><br><span class="line">   <span class="keyword">from</span> 表名</span><br><span class="line">   &lt;<span class="keyword">include</span> refid = <span class="string">&quot;allValues&quot;</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li>根据 <code>id</code> 查询，复用 <code>uniquekeyField</code> <figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id=<span class="string">&quot;findById&quot;</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li>批量查询<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id=<span class="string">&quot;batchSelect&quot;</span> resultType=<span class="string">&quot;&quot;</span> parameterType=<span class="string">&quot;java.util.List&quot;</span>&gt;</span><br><span class="line">        <span class="keyword">select</span> &lt;<span class="keyword">include</span> refid = <span class="string">&quot;allFields&quot;</span>&gt;</span><br><span class="line">        <span class="keyword">from</span> 表名 </span><br><span class="line">        &lt;<span class="keyword">where</span>&gt;</span><br><span class="line">           id <span class="keyword">in</span></span><br><span class="line">            &lt;<span class="built_in">trim</span> prefix=<span class="string">&quot;(&quot;</span> suffix=<span class="string">&quot;)&quot;</span>&gt;</span><br><span class="line">                &lt;foreach <span class="keyword">collection</span>=<span class="string">&quot;list&quot;</span> item=<span class="string">&quot;item&quot;</span>  <span class="keyword">index</span>=<span class="string">&quot;index&quot;</span>  separator=<span class="string">&quot;,&quot;</span>&gt;</span><br><span class="line">                    &lt;<span class="keyword">include</span> refid = <span class="string">&quot;setValues&quot;</span>&gt;</span><br><span class="line">                &lt;/foreach&gt;</span><br><span class="line">            &lt;/<span class="built_in">trim</span>&gt;</span><br><span class="line">        &lt;/<span class="keyword">where</span>&gt;</span><br><span class="line">        <span class="keyword">order</span> <span class="keyword">by</span> t.update_time <span class="keyword">desc</span></span><br><span class="line">    &lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"> &lt;<span class="keyword">select</span> id=&quot;findByArray&quot; parameterType=&quot;Object[]&quot; resultType=&quot;&quot;&gt;</span><br><span class="line">      <span class="keyword">select</span> &lt;<span class="keyword">include</span> refid = &quot;allFields&quot;&gt;</span><br><span class="line">      <span class="keyword">from</span> 表名</span><br><span class="line">        &lt;<span class="keyword">where</span>&gt;</span><br><span class="line">          &lt;<span class="keyword">if</span> test=&quot;array!=null&quot;&gt;</span><br><span class="line">              &lt;<span class="keyword">foreach</span> collection=&quot;array&quot; <span class="keyword">index</span>=&quot;index&quot; item=&quot;item&quot;</span><br><span class="line">                           <span class="keyword">open</span>=&quot;and id in(&quot;separator=&quot;,&quot;<span class="keyword">close</span>=&quot;)&quot;&gt;</span><br><span class="line">                      #&#123;item.id&#125;</span><br><span class="line">              &lt;/<span class="keyword">foreach</span>&gt;</span><br><span class="line">        &lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">        &lt;/<span class="keyword">where</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li>插入  <figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">insert</span> id = <span class="string">&quot;findByCount&quot;</span>&gt;</span><br><span class="line">    <span class="keyword">insert</span> <span class="keyword">into</span> 表名</span><br><span class="line">    &lt;<span class="keyword">include</span> refid = <span class="string">&quot;allFields&quot;</span>&gt;</span><br><span class="line">    <span class="keyword">values</span></span><br><span class="line">    &lt;<span class="keyword">include</span> refid = <span class="string">&quot;setValues&quot;</span>&gt;</span><br><span class="line"> &lt;/<span class="keyword">insert</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li>批量插入<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;batchInsert&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.util.List&quot;</span> <span class="attr">useGeneratedKeys</span>=<span class="string">&quot;true&quot;</span> <span class="attr">keyProperty</span>=<span class="string">&quot;id&quot;</span>&gt;</span></span><br><span class="line">     insert into 表名 </span><br><span class="line">     <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span> = <span class="string">&quot;allFields&quot;</span>&gt;</span></span><br><span class="line">     values</span><br><span class="line">     <span class="comment">&lt;!--mybatis 参数映射为list @Param 可以指定入参名称--&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;item&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span> = <span class="string">&quot;setValues&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>批量主键删除<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"> &lt;<span class="keyword">delete</span> id=&quot;batchDelete&quot; parameterType=&quot;long&quot;&gt;</span><br><span class="line">    <span class="keyword">delete</span> <span class="keyword">from</span> 表名 <span class="keyword">where</span> id <span class="keyword">in</span></span><br><span class="line">    &lt;<span class="keyword">foreach</span> collection=&quot;array&quot; item=&quot;item&quot; <span class="keyword">open</span>=&quot;(&quot; separator=&quot;,&quot; <span class="keyword">close</span>=&quot;)&quot;&gt;</span><br><span class="line">    &lt;<span class="keyword">include</span> refid = &quot;uniquekeyField&quot;&gt;</span><br><span class="line">    &lt;/<span class="keyword">foreach</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">delete</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li>主键删除<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"> &lt;<span class="keyword">delete</span> id=<span class="string">&quot;delete&quot;</span> parameterType=<span class="string">&quot;long&quot;</span>&gt;</span><br><span class="line">    <span class="keyword">delete</span> <span class="keyword">from</span> 表名 <span class="keyword">where</span> id = &lt;<span class="keyword">include</span> refid = <span class="string">&quot;uniquekeyField&quot;</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">delete</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li>批量删除 <code>map.put(&quot;ids&quot;,&quot;1,2,3&quot;);map.put(&quot;name&quot;,&quot;kangpan&quot;)</code> <figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;batchDelete&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.util.Map&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">  delete from 表名</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;ids != null&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">            id in (#</span><span class="template-variable">&#123;ids,jdbcType=BIGINT&#125;</span><span class="xml">)</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;name != null &amp;&amp; name != &#x27;&#x27;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">            and name = #</span><span class="template-variable">&#123;name,jdbcType=VARCHAR&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+<li>更新<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"> &lt;<span class="keyword">update</span> id=<span class="string">&quot;update&quot;</span> parameterType=<span class="string">&quot;&quot;</span>&gt;</span><br><span class="line">    <span class="keyword">update</span> 表名 </span><br><span class="line">    &lt;<span class="keyword">set</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">include</span> refid = <span class="string">&quot;setValues&quot;</span>&gt;</span><br><span class="line">    &lt;/<span class="keyword">set</span>&gt;</span><br><span class="line">    <span class="keyword">where</span> t.id = &lt;<span class="keyword">include</span> refid = <span class="string">&quot;uniquekeyField&quot;</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">update</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">update</span> id=<span class="string">&quot;update&quot;</span> parameterType=<span class="string">&quot;&quot;</span>&gt;  </span><br><span class="line">      <span class="keyword">update</span> 表名  </span><br><span class="line">      &lt;<span class="built_in">trim</span> prefix=<span class="string">&quot;SET&quot;</span> suffixOverrides=<span class="string">&quot;,&quot;</span>&gt;  </span><br><span class="line">      &lt;<span class="keyword">include</span> refid = <span class="string">&quot;setValues&quot;</span>&gt;</span><br><span class="line">      &lt;/<span class="built_in">trim</span>&gt;  </span><br><span class="line">      <span class="keyword">where</span> id = &lt;<span class="keyword">include</span> refid = <span class="string">&quot;uniquekeyField&quot;</span>&gt; </span><br><span class="line">  &lt;/<span class="keyword">update</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li>批量更新<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"> &lt;<span class="keyword">update</span> id=&quot;batchUpdate&quot; parameterType=&quot;java.util.List&quot;&gt;</span><br><span class="line">    &lt;<span class="keyword">foreach</span> collection=&quot;list&quot; item=&quot;item&quot; <span class="keyword">index</span>=&quot;index&quot; <span class="keyword">open</span>=&quot;&quot; <span class="keyword">close</span>=&quot;&quot; separator=&quot;;&quot;&gt;</span><br><span class="line">        <span class="keyword">update</span> 表名 </span><br><span class="line">        &lt;<span class="keyword">set</span>&gt;</span><br><span class="line">            &lt;<span class="keyword">include</span> refid = &quot;setValues&quot;&gt;</span><br><span class="line">        &lt;/<span class="keyword">set</span>&gt;</span><br><span class="line">        <span class="keyword">where</span> t.id = &lt;<span class="keyword">include</span> refid = &quot;uniquekeyField&quot;&gt;</span><br><span class="line">    &lt;/<span class="keyword">foreach</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">update</span>&gt;</span><br></pre></td></tr></table></figure>
+<a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/">了解更多</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Mybatis/" rel="tag"># Mybatis</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/19/%E9%80%82%E9%85%8D%E5%99%A8/" rel="prev" title="Adapter">
+      <i class="fa fa-chevron-left"></i> Adapter
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="康盼"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">康盼</p>
+  <div class="site-description" itemprop="description">知识改变人生，努力改变自己。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/javakangpan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;javakangpan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/githup_163@163.com" title="E-Mail → githup_163@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fas fa-skull"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">康盼</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全站共27.1k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -181,6 +181,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/21/mybatis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="康盼">
+      <meta itemprop="description" content="知识改变人生，努力改变自己。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="未来">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/21/mybatis/" class="post-title-link" itemprop="url">mybatis</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-21 21:37:01" itemprop="dateCreated datePublished" datetime="2021-04-21T21:37:01+08:00">2021-04-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-22 22:13:26" itemprop="dateModified" datetime="2021-04-22T22:13:26+08:00">2021-04-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>项目中<code>CRUD</code>，写好<code>XML</code>很重要<br>个人经常使用的模板，纯手打，有写错的地方请指出</p>
+<ul>
+<li>定义全属性的 <code>ResultMap</code></li>
+<li>使用 <code>&lt;sql&gt;&lt;/sql&gt;</code> 抽离片段<br><code>&lt;include&gt;&lt;/include&gt;</code> 重复使用 <ul>
+<li>表名 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;tableName&quot;</span>&gt;</span></span><br><span class="line">    表名</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>表字段<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">&lt;sql <span class="built_in">id</span>=<span class="string">&quot;allFields&quot;</span>&gt;</span><br><span class="line">    <span class="built_in">id</span>,</span><br><span class="line">    <span class="built_in">name</span>,</span><br><span class="line">    ...</span><br><span class="line">    表字段</span><br><span class="line">&lt;/sql&gt;</span><br></pre></td></tr></table></figure></li>
+<li>表字段赋值<figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;allValues&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    #</span><span class="template-variable">&#123;id,jdbcType = BIGINT&#125;</span><span class="xml">,...</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+<li>主键赋值<figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;uniquekeyField&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    #</span><span class="template-variable">&#123;id,jdbcType = BIGINT&#125;</span><span class="xml">；</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/21/mybatis/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/19/%E9%80%82%E9%85%8D%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -808,72 +887,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/Redis-+-Lua/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼">
-      <meta itemprop="description" content="知识改变人生，努力改变自己。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="未来">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/14/Redis-+-Lua/" class="post-title-link" itemprop="url">Redis + Lua</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-14 08:13:40 / 修改时间：08:16:32" itemprop="dateCreated datePublished" datetime="2021-04-14T08:13:40+08:00">2021-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>搭建一个 <code>springboot</code> 的项目，引入  <code>spring-boot-starter-parent</code>父组件，<code> spring-boot-starter-web</code>组件， <code>lombok</code>组件，<code>jedis</code>客户端组件   ，谷歌的<code>guava</code> 组件</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/14/Redis-+-Lua/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -944,14 +957,14 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -995,7 +1008,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共26.1k字</span>
+  <span class="post-count">全站共27.1k字</span>
 </div>
 
         
