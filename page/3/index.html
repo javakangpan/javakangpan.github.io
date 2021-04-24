@@ -179,6 +179,76 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/Cache-Line/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="康盼&李婷">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/14/Cache-Line/" class="post-title-link" itemprop="url">Cache Line</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-14 07:46:47 / 修改时间：21:13:00" itemprop="dateCreated datePublished" datetime="2021-04-14T07:46:47+08:00">2021-04-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>缓存行 <code>Cache Line</code>  <code>CPU</code> 高速缓存中分配的最小存储单位。<code>CPU</code> 缓存分为 <code>Cache L1 L2 L3</code> 一级 二级 三级 缓存，查看本机缓存<br><code>pom.xml</code> 引入</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="section">&lt;dependency&gt;</span></span><br><span class="line">    <span class="section">&lt;groupId&gt;</span><span class="attribute">fr</span>.ujm.tse.lt<span class="number">2</span>c.satin&lt;/groupId&gt;</span><br><span class="line">    <span class="section">&lt;artifactId&gt;</span><span class="attribute">cachesize</span>&lt;/artifactId&gt;</span><br><span class="line">    <span class="section">&lt;version&gt;</span><span class="attribute">0</span>.<span class="number">2</span>.<span class="number">1</span>&lt;/version&gt;</span><br><span class="line"><span class="section">&lt;/dependency&gt;</span></span><br></pre></td></tr></table></figure>
+<p>不同处理器的缓存行 <code>L1 L2 L3</code> 高速缓存行字节宽不一样 有 <code>32</code> 字节和 <code>64</code> 字节</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">CacheInfo info = CacheInfo.getInstance();</span><br><span class="line">CacheLevelInfo cacheLevelInfo = info.getCacheInformation(CacheLevel.L1, CacheType.INSTRUCTION_CACHE);</span><br><span class="line">System.out.println(<span class="string">&quot;L1 Cache info:&quot;</span> + cacheLevelInfo.toString());</span><br></pre></td></tr></table></figure>
+<p>缓存行在内存中加载的地址是连续的 假如缓存行是 <code>64</code> 字节 有两个变量 <code>a</code> 和 <code>b</code> ，<code>a</code> + <code>b</code> 不足 64 字节，那么会在同一个缓存行造成伪共享，处理器修改 <code>a</code> 的时候，其他处理器读取 <code>b</code> 的时候该缓存行是失效的( <code>MESI</code> 协议)，其他处理器不得不重新从系统内存中加载。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/14/Cache-Line/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/Docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -499,7 +569,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -550,7 +620,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共28.8k字</span>
+  <span class="post-count">全站共29.8k字</span>
 </div>
 
         

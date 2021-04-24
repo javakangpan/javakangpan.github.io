@@ -179,6 +179,73 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/24/List-String-Map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="康盼&李婷">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/24/List-String-Map/" class="post-title-link" itemprop="url">List-String-Map</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-24 20:02:22 / 修改时间：21:21:48" itemprop="dateCreated datePublished" datetime="2021-04-24T20:02:22+08:00">2021-04-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>日常工作中经常和 集合、数组、Map、字符串互相转换 打交道，这里记录一些  <a target="_blank" rel="noopener" href="https://github.com/google/guava/wiki">Guava</a> 的用法。</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1331819951&auto=1&height=66"></iframe>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/24/List-String-Map/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/24/generator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -204,7 +271,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-24 12:20:16 / 修改时间：13:30:01" itemprop="dateCreated datePublished" datetime="2021-04-24T12:20:16+08:00">2021-04-24</time>
+              <time title="创建时间：2021-04-24 12:20:16 / 修改时间：17:40:13" itemprop="dateCreated datePublished" datetime="2021-04-24T12:20:16+08:00">2021-04-24</time>
             </span>
 
           
@@ -219,8 +286,6 @@
 
       
           <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1363948882&auto=1&height=66"></iframe>
-上一篇介绍自己写`XML`模板的文章，日常开发迭代快，可能需要高效的完成 `CRUD`。这里简单介绍两种常见的生成 `Mapper接口` `Model模型` `MapperXML` 。
-首先建一个简单的工程 `mybatis-demo`，`pom.xml` 文件引入相关组件
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/04/24/generator/#more" rel="contents">
@@ -278,7 +343,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-24 12:10:52" itemprop="dateModified" datetime="2021-04-24T12:10:52+08:00">2021-04-24</time>
+                <time title="修改时间：2021-04-24 17:41:54" itemprop="dateModified" datetime="2021-04-24T17:41:54+08:00">2021-04-24</time>
               </span>
 
           
@@ -293,21 +358,6 @@
 
       
           <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1807381939&auto=1&height=66"></iframe>
-项目中`CRUD`，写好`XML`很重要
-个人经常使用的模板
-- 定义全属性的 `ResultMap`
-- 使用 `<sql></sql>` 抽离片段 
-`<include></include>` 重复使用 
-    - 表名 
-    <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;tableName&quot;</span>&gt;</span></span><br><span class="line">    表名</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br></pre></td></tr></table></figure>
-    - order by 条件
-    <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;condition&quot;</span>&gt;</span></span><br><span class="line">    表字段</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br></pre></td></tr></table></figure>
-    - 表字段
-    <figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">&lt;sql <span class="built_in">id</span>=<span class="string">&quot;allFields&quot;</span>&gt;</span><br><span class="line">    <span class="built_in">id</span>,</span><br><span class="line">    <span class="built_in">name</span>,</span><br><span class="line">    ...</span><br><span class="line">    表字段</span><br><span class="line">&lt;/sql&gt;</span><br></pre></td></tr></table></figure>
-    - 表字段赋值
-    <figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;allValues&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    #</span><span class="template-variable">&#123;id,jdbcType = BIGINT&#125;</span><span class="xml">,...</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-    - 主键赋值
-    <figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;uniquekeyField&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    #</span><span class="template-variable">&#123;id,jdbcType = BIGINT&#125;</span><span class="xml">；</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/04/21/mybatis/#more" rel="contents">
@@ -828,72 +878,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/14/SourceTree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼&李婷">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="知识">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/14/SourceTree/" class="post-title-link" itemprop="url">SourceTree</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-04-14 08:20:07 / 修改时间：08:21:42" itemprop="dateCreated datePublished" datetime="2021-04-14T08:20:07+08:00">2021-04-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">SourceTree</a>SourceTree集成了Git Flow功能，能简单方便的操作和实现常规的工作流程。支持OSX和Windows平台。<a target="_blank" rel="noopener" href="https://support.atlassian.com/sourcetree/">操作文档</a><br>在 <code>gitHub</code> 创建一个仓库 <code>javaBook</code><br>克隆到本地</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/14/SourceTree/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -964,7 +948,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1015,7 +999,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共28.8k字</span>
+  <span class="post-count">全站共29.8k字</span>
 </div>
 
         
