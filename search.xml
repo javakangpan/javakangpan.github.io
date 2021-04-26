@@ -1099,4 +1099,44 @@
         <tag>Java</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Some Problem About Spring</title>
+    <url>/2021/04/26/Some-Problem-About-Spring/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>看下 <code>org.springframework.util</code> 包下的 <code>ClassUtils</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassUtils</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">char</span> PACKAGE_SEPARATOR = <span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getPackageName</span><span class="params">(String fqClassName)</span> </span>&#123;</span><br><span class="line">    Assert.notNull(fqClassName, <span class="string">&quot;Class name must not be null&quot;</span>);</span><br><span class="line">    <span class="keyword">int</span> lastDotIndex = fqClassName.lastIndexOf(PACKAGE_SEPARATOR);</span><br><span class="line">    <span class="keyword">return</span> (lastDotIndex != -<span class="number">1</span> ? fqClassName.substring(<span class="number">0</span>, lastDotIndex) : <span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>如果 <code>fqClassName</code> 参数是 <code>com.java</code> 那么返回结果为 <code>com</code> ，这里解答了我一个疑问，比如 <code>Spring</code> 启动类所在的包 和 <code>Controller</code>包 不在同一个包下，导致找不到 <code>Controller</code> 类。这里写下正常的包结构</p>
+<ul>
+<li>com<ul>
+<li>controller</li>
+<li>model</li>
+<li>service</li>
+<li>mapper</li>
+<li>Application 启动类</li>
+</ul>
+</li>
+</ul>
+<p>如果 <code>Application</code> 启动类 在其它包下，例如放在 <code>app</code> 包下，那么启动会报错，找不到对应的 <code>Bean</code></p>
+<ul>
+<li>com<ul>
+<li>controller</li>
+<li>model</li>
+<li>service</li>
+<li>mapper</li>
+</ul>
+</li>
+<li>app<ul>
+<li>Application 启动类<br>那为啥在同一个包下就可以找到呢<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+来看下 <code>@SpringBootApplication</code> 注解，这里省略了其它代码<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ComponentScan(excludeFilters = &#123; @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),</span></span><br><span class="line"><span class="meta">public @interface SpringBootApplication &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<code>@SpringBootApplication</code> 开启了很多功能，其中一个关键功能就是 <code>@ComponentScan</code><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ComponentScan &#123;</span><br><span class="line">	<span class="meta">@AliasFor(&quot;basePackages&quot;)</span></span><br><span class="line">	String[] value() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+这里 <code>basePackages</code> 默认是 <code>&#123;&#125;</code>，那么默认是什么包呢，看下关键处理类 <code>org.springframework.context.annotation</code> 包下的 <code>ComponentScanAnnotationParser</code> 类，这里省略了其它代码<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComponentScanAnnotationParser</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Set&lt;BeanDefinitionHolder&gt; <span class="title">parse</span><span class="params">(AnnotationAttributes componentScan, <span class="keyword">final</span> String declaringClass)</span> </span>&#123;</span><br><span class="line">        Set&lt;String&gt; basePackages = <span class="keyword">new</span> LinkedHashSet&lt;&gt;();</span><br><span class="line">		String[] basePackagesArray = componentScan.getStringArray(<span class="string">&quot;basePackages&quot;</span>);</span><br><span class="line">        	<span class="keyword">if</span> (basePackages.isEmpty()) &#123;</span><br><span class="line">			basePackages.add(ClassUtils.getPackageName(declaringClass));</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+看了这段代码应该明白了</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
 </search>
