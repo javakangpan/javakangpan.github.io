@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原型 Bean 被固定明明定义的是多例SCOPE_PROTOTYPE，为啥每次服务请求打印的地址都是同一个呢 @Service@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)public class ServiceImpl &amp;#123;&amp;#125; 浏览器输入http:&#x2F;&#x2F;localhost:8080&#x2F;test 打印的都是同一个地址 servi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原型 Bean 被固定">
+<meta property="og:url" content="http://example.com/2021/04/28/%E5%8E%9F%E5%9E%8B-Bean-%E8%A2%AB%E5%9B%BA%E5%AE%9A/index.html">
+<meta property="og:site_name" content="知识">
+<meta property="og:description" content="原型 Bean 被固定明明定义的是多例SCOPE_PROTOTYPE，为啥每次服务请求打印的地址都是同一个呢 @Service@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)public class ServiceImpl &amp;#123;&amp;#125; 浏览器输入http:&#x2F;&#x2F;localhost:8080&#x2F;test 打印的都是同一个地址 servi">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-28T12:41:35.000Z">
+<meta property="article:modified_time" content="2021-04-28T13:17:00.614Z">
+<meta property="article:author" content="康盼&amp;李婷">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/04/28/%E5%8E%9F%E5%9E%8B-Bean-%E8%A2%AB%E5%9B%BA%E5%AE%9A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>原型 Bean 被固定 | 知识</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">知识</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">学无止境。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/28/%E5%8E%9F%E5%9E%8B-Bean-%E8%A2%AB%E5%9B%BA%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="康盼&李婷">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知识">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          原型 Bean 被固定
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-28 20:41:35 / 修改时间：21:17:00" itemprop="dateCreated datePublished" datetime="2021-04-28T20:41:35+08:00">2021-04-28</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=1446769897&auto=1&height=32"></iframe>
+
+
+<hr>
+<h3 id="原型-Bean-被固定"><a href="#原型-Bean-被固定" class="headerlink" title="原型 Bean 被固定"></a>原型 Bean 被固定</h3><p>明明定义的是多例<code>SCOPE_PROTOTYPE</code>，为啥每次服务请求打印的地址都是同一个呢</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceImpl</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>浏览器输入<code>http://localhost:8080/test</code> 打印的都是同一个地址 <code>service:demo.generator.ServiceImpl@3501ee32</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ServiceImpl service;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;test&quot;,method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;service:&quot;</span> + service;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>当一个属性成员 <code>service</code> 声明为 <code>@Autowired</code> 后，那么在创建 <code>Controller</code> 这个 <code>Bean</code> 时，会先使用构造器反射出实例，然后来装配各个标记为 <code>@Autowired</code> 的属性成员（装配方法参考 <code>AbstractAutowireCapableBeanFactory #populateBean</code>）。具体到执行过程，它会使用很多 <code>BeanPostProcessor</code> 来做完成工作，其中一种是 <code>AutowiredAnnotationBeanPostProcessor</code>，它会通过 <code>DefaultListableBeanFactory#findAutowireCandidates</code> 寻找到 <code>ServiceImp</code> 类型的 <code>Bean</code>，然后设置给对应的属性（即 <code>service</code> 成员）。<br>关键执行步骤可参考 <code>AutowiredAnnotationBeanPostProcessor.AutowiredFieldElement#inject</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(Object bean, <span class="meta">@Nullable</span> String beanName, <span class="meta">@Nullable</span> PropertyValues pvs)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">   Field field = (Field) <span class="keyword">this</span>.member;</span><br><span class="line">   Object value;</span><br><span class="line">   <span class="comment">//寻找“bean”</span></span><br><span class="line">   <span class="keyword">if</span> (<span class="keyword">this</span>.cached) &#123;</span><br><span class="line">      value = resolvedCachedArgument(beanName, <span class="keyword">this</span>.cachedFieldValue);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span> &#123;</span><br><span class="line">     <span class="comment">//省略其他非关键代码</span></span><br><span class="line">     value = beanFactory.resolveDependency(desc, beanName, autowiredBeanNames, typeConverter);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="comment">//将bean设置给成员字段</span></span><br><span class="line">      ReflectionUtils.makeAccessible(field);</span><br><span class="line">      field.set(bean, value);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>待我们寻找到要自动注入的 <code>Bean</code> 后，即可通过反射设置给对应的 <code>field</code>。这个<code>field</code> 的执行只发生了一次，所以后续就固定起来了，它并不会因为 <code>ServiceImpl</code> 标记了 <code>SCOPE_PROTOTYPE</code> 而改变。</p>
+<p>所以，当一个单例的 <code>Bean</code>，使用 autowired 注解标记其属性时，（这里指单例的 <code>Controller</code> 这个 <code>Bean</code>），你一定要注意这个属性值 （这里指<code>service</code>）会被固定下来。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>通过上述源码分析，我们可以知道要修正这个问题，肯定是不能将 <code>ServiceImpl</code> 的 <code>Bean</code> 固定到属性上的，而应该是每次使用时都会重新获取一次。所以这里我提供了两种修正方式：1. 自动注入 <code>Context</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ApplicationContext applicationContext;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;test&quot;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">         <span class="keyword">return</span>  <span class="string">&quot;service: &quot;</span> + getService();</span><br><span class="line">    &#125;;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServiceImpl <span class="title">getService</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> applicationContext.getBean(ServiceImpl.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用 Lookup 注解<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;test&quot;,method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;service:&quot;</span> + getService();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Lookup</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServiceImpl <span class="title">getService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3>在修正代码中，我们看到 <code>getService()</code> 方法的实现返回值是 null，这或许很难说服自己，为啥返回<code>null</code>可以生成新的实例对象。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Lookup</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ServiceImpl <span class="title">getService</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//下面的日志会输出么？</span></span><br><span class="line">    log.info(<span class="string">&quot;executing this method&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+以上代码，添加了一行代码输出日志。测试后，我们会发现并没有日志输出。<br>那它是怎么实现的呢，看下<code>CglibSubclassingInstantiationStrategy</code>的内部类<code>LookupOverrideMethodInterceptor</code>的 <code>intercept</code> 方法，这里省略了代码<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> BeanFactory owner;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object obj, Method method, Object[] args, MethodProxy mp)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.owner.getBean(method.getReturnType())); <span class="comment">// 方法的返回类型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+通过 <code>BeanFactory</code> 来获取 <code>Bean</code>，<code>getBean(method.getReturnType())</code>。当使用 <code>Lookup</code> 注解一个方法时，这个方法的具体实现已并不重要，里面代码随便怎么写都可以。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Spring/" rel="tag"># Spring</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/27/Aui/" rel="prev" title="Aui">
+      <i class="fa fa-chevron-left"></i> Aui
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B-Bean-%E8%A2%AB%E5%9B%BA%E5%AE%9A"><span class="nav-number">1.</span> <span class="nav-text">原型 Bean 被固定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95"><span class="nav-number">4.</span> <span class="nav-text">拓展</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="康盼&李婷"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">康盼&李婷</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/javakangpan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;javakangpan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/githup_163@163.com" title="E-Mail → githup_163@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fas fa-skull"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">康盼&李婷</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全站共32.6k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
