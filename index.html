@@ -203,7 +203,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-28 20:41:35 / 修改时间：21:17:00" itemprop="dateCreated datePublished" datetime="2021-04-28T20:41:35+08:00">2021-04-28</time>
+              <time title="创建时间：2021-04-28 20:41:35 / 修改时间：21:47:47" itemprop="dateCreated datePublished" datetime="2021-04-28T20:41:35+08:00">2021-04-28</time>
             </span>
 
           
@@ -217,11 +217,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=1446769897&auto=1&height=32"></iframe>
-
-
-<hr>
-<h3 id="原型-Bean-被固定"><a href="#原型-Bean-被固定" class="headerlink" title="原型 Bean 被固定"></a>原型 Bean 被固定</h3><p>明明定义的是多例<code>SCOPE_PROTOTYPE</code>，为啥每次服务请求打印的地址都是同一个呢</p>
+          <h3 id="原型-Bean-被固定"><a href="#原型-Bean-被固定" class="headerlink" title="原型 Bean 被固定"></a>原型 Bean 被固定</h3><p>明明定义的是多例<code>SCOPE_PROTOTYPE</code>，为啥每次服务请求打印的地址都是同一个呢</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceImpl</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>浏览器输入<code>http://localhost:8080/test</code> 打印的都是同一个地址 <code>service:demo.generator.ServiceImpl@3501ee32</code></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ServiceImpl service;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;test&quot;,method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;service:&quot;</span> + service;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
