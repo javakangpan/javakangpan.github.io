@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="执行步骤查看 docker search vsftpdNAME                                     DESCRIPTION                                     STARS               OFFICIAL            AUTOMATEDfauria&#x2F;vsftpd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在容器中搭建运行FTP服务器">
+<meta property="og:url" content="http://example.com/2021/04/29/%E5%9C%A8%E5%AE%B9%E5%99%A8%E4%B8%AD%E6%90%AD%E5%BB%BA%E8%BF%90%E8%A1%8CFTP%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="执行步骤查看 docker search vsftpdNAME                                     DESCRIPTION                                     STARS               OFFICIAL            AUTOMATEDfauria&#x2F;vsftpd">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-29T12:34:13.000Z">
+<meta property="article:modified_time" content="2021-04-29T13:50:55.641Z">
+<meta property="article:author" content="康盼&amp;李婷">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/04/29/%E5%9C%A8%E5%AE%B9%E5%99%A8%E4%B8%AD%E6%90%AD%E5%BB%BA%E8%BF%90%E8%A1%8CFTP%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>在容器中搭建运行FTP服务器 | </title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title"></h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/29/%E5%9C%A8%E5%AE%B9%E5%99%A8%E4%B8%AD%E6%90%AD%E5%BB%BA%E8%BF%90%E8%A1%8CFTP%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="康盼&李婷">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在容器中搭建运行FTP服务器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-29 20:34:13 / 修改时间：21:50:55" itemprop="dateCreated datePublished" datetime="2021-04-29T20:34:13+08:00">2021-04-29</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="执行步骤"><a href="#执行步骤" class="headerlink" title="执行步骤"></a>执行步骤</h3><h4 id="查看-docker-search-vsftpd"><a href="#查看-docker-search-vsftpd" class="headerlink" title="查看 docker search vsftpd"></a>查看 <code>docker search vsftpd</code></h4><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">NAME</span>                                     DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line"><span class="attribute">fauria</span>/vsftpd                            vsftpd Docker image based <span class="literal">on</span> Centos <span class="number">7</span>. Suppo…   <span class="number">153</span>                                    <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">panubo</span>/vsftpd                            vsftpd - Secure, fast FTP server                <span class="number">36</span>                                     <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">vimagick</span>/vsftpd                                                                          <span class="number">13</span>                                     <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">odiobill</span>/vsftpd                          Very light vsftpd installation based <span class="literal">on</span> Debi…   <span class="number">7</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">million12</span>/vsftpd                         VSFTPD Server in a Docker                       <span class="number">7</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">emilybache</span>/vsftpd-server                                                                 <span class="number">6</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">avenus</span>/vsftpd-alpine                     Docker image of vsftpd server based <span class="literal">on</span> Alpin…   <span class="number">5</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">wildscamp</span>/vsftpd                         An FTP server designed to simplify local dev…   <span class="number">4</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">loicmathieu</span>/vsftpd                       vsftpd container                                <span class="number">2</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">akue</span>/vsftpd                              vsftpd Docker image based <span class="literal">on</span> Centos <span class="number">7</span>. Suppo…   <span class="number">1</span></span><br><span class="line"><span class="attribute">hiproz</span>/vsftpd                            an vsftpd that support virtual user which ha…   <span class="number">1</span></span><br><span class="line"><span class="attribute">benssson</span>/vsftpd                          copy of wildscamp/vsftpd but with pasv_addr_…   <span class="number">1</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">instantlinux</span>/vsftpd                      A clean, easy-to-use, tiny yet full-featured…   <span class="number">1</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">mikenye</span>/vsftpd-anon-uploads              A generic, ready-to-go anonymous ftp server …   <span class="number">1</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">undying</span>/vsftpd                           Vsftpd Docker Container                         <span class="number">0</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">ledermann</span>/vsftpd                         Clone of helderco/docker-vsftpd, just to pro…   <span class="number">0</span></span><br><span class="line"><span class="attribute">dmanas</span>/vsftpd-mysql                                                                      <span class="number">0</span></span><br><span class="line"><span class="attribute">dolphyvn</span>/vsftpd_priv                                                                     <span class="number">0</span></span><br><span class="line"><span class="attribute">markhobson</span>/vsftpd                                                                        <span class="number">0</span></span><br><span class="line"><span class="attribute">valus</span>/vsftpd                             vsftpd <span class="literal">on</span> CentOS <span class="number">7</span> for internal usage.          <span class="number">0</span></span><br><span class="line"><span class="attribute">shourai</span>/vsftpd-alpine                    vsftpd based <span class="literal">on</span> alpine                          <span class="number">0</span></span><br><span class="line"><span class="attribute">ernestas</span>/vsftpd-server                   simple vsftpd server                            <span class="number">0</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">openmicroscopy</span>/vsftpd-anonymous-upload   Vsftpd Docker image for anonymous FTP upload…   <span class="number">0</span>                                      <span class="meta"> [OK]</span></span><br><span class="line"><span class="attribute">zloystrelok</span>/vsftpd                       fixed fork vsftpd                               <span class="number">0</span></span><br><span class="line"><span class="attribute">vistrcm</span>/vsftpd                           This Docker container implements a vsftpd se…   <span class="number">0</span>                                      <span class="meta"> [OK]</span></span><br></pre></td></tr></table></figure>
+<h4 id="拉取镜像-docker-pull-fauria-vsftpd"><a href="#拉取镜像-docker-pull-fauria-vsftpd" class="headerlink" title="拉取镜像 docker pull fauria/vsftpd"></a>拉取镜像 <code>docker pull fauria/vsftpd</code></h4><figure class="highlight ldif"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Using default tag</span>: latest</span><br><span class="line"><span class="attribute">latest</span>: Pulling from fauria/vsftpd</span><br><span class="line"><span class="attribute">75f829a71a1c</span>: Downloading [=&gt;                                                 ]   2.15MB/75.86MB</span><br><span class="line"><span class="attribute">a1a6b490d7c7</span>: Downloading [=====&gt;                                             ]  719.8kB/6.415MB</span><br><span class="line"><span class="attribute">ad2cabfec967</span>: Downloading [======&gt;                                            ]  986.3kB/7.923MB</span><br><span class="line"><span class="attribute">c7a98e8d62f5</span>: Waiting</span><br><span class="line"><span class="attribute">10d192add873</span>: Waiting</span><br><span class="line"><span class="attribute">fc18a09c86d0</span>: Waiting</span><br><span class="line"><span class="attribute">5397e9c5e314</span>: Waiting</span><br><span class="line"><span class="attribute">e89f582c70f5</span>: Waiting</span><br><span class="line"><span class="attribute">8b8bdebbfc97</span>: Waiting</span><br><span class="line"><span class="attribute">026ae919720d</span>: Waiting</span><br></pre></td></tr></table></figure>
+<h3 id="获取本机地址-ipconfig"><a href="#获取本机地址-ipconfig" class="headerlink" title="获取本机地址 ipconfig"></a>获取本机地址 <code>ipconfig</code></h3><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">以太网适配器 vEthernet (Default Switch):</span><br><span class="line"></span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line">   本地链接 IPv6 地址. . . . . . . . : <span class="type">fe80</span>::f55c:<span class="number">61e5</span>:<span class="number">557</span>f:<span class="number">503</span>d%<span class="number">39</span></span><br><span class="line">   IPv4 地址 . . . . . . . . . . . . : 192.168.231.193</span><br><span class="line">   子网掩码  . . . . . . . . . . . . : 255.255.255.240</span><br><span class="line">   默认网关. . . . . . . . . . . . . :</span><br></pre></td></tr></table></figure>
+<h3 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h3><p>参数说明：<br><code>C:/docker-data/:/home/vsftpd</code> :映射 <code>docker</code> 容器 <code>ftp</code> 文件根目录（冒号前面是宿主机的目录<br><code>-p</code>：映射 <code>docker</code> 端口（冒号前面是宿主机的端口）<br><code>-e FTP_USER=test -e FTP_PASS=test </code>：设置默认的用户名密码<br><code>PASV_ADDRESS</code>：宿主机 <code>ip</code>，当需要使用被动模式时必须设置。<br><code>PASV_MIN_PORT~ PASV_MAX_PORT</code>：给客服端提供下载服务随机端口号范围，默认 <code>21100-21110</code>，与前面的 <code>docker</code> 端口映射设置成一样。</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -d -v C:/docker-data/:/home/vsftpd -p <span class="number">20</span>:<span class="number">20</span> -p <span class="number">21</span>:<span class="number">21</span> -p <span class="number">21100</span>-<span class="number">21110</span>:<span class="number">21100</span>-<span class="number">21110</span> -e FTP_USER=test -e FTP_PASS=test -e PASV_ADDRESS=<span class="number">192</span>. <span class="number">168</span>.<span class="number">231</span>.<span class="number">193</span> -e PASV_MIN_PORT=<span class="number">21100</span> -e PASV_MAX_PORT=<span class="number">21110</span> --name vsftpd --restart=always fauria/vsftpd</span><br></pre></td></tr></table></figure>
+<h3 id="进入容器-docker-exec-i-t-vsftpd-bash"><a href="#进入容器-docker-exec-i-t-vsftpd-bash" class="headerlink" title="进入容器 docker exec -i -t vsftpd bash"></a>进入容器 <code>docker exec -i -t vsftpd bash</code></h3><p>进入 <code>home/vsftpd</code> 文件，查看创建的用户 <code>test</code>，进入<code>test</code> 目录， 创建 <code>1.txt 2.txt</code>，或者在宿主机的 <code>C:/docker-data/test</code> 文件里面手动创建，创建之后自动更新 <code>home/vsftpd/test</code>里面的文件。</p>
+<figure class="highlight tcl"><table><tr><td class="code"><pre><span class="line">[root@bfdc203461de /]# ls</span><br><span class="line">anaconda-post.log  bin  dev  etc  home  lib  lib64  media  mnt  opt  <span class="keyword">proc</span><span class="title">  root</span> <span class="title"> run</span> <span class="title"> sbin</span> <span class="title"> srv</span> <span class="title"> sys</span> <span class="title"> tmp</span> <span class="title"> usr</span> <span class="title"> var</span></span><br><span class="line"><span class="title">[root@bfdc203461de</span> /]#<span class="title"> cd</span> home/</span><br><span class="line">[root@bfdc203461de<span class="title"> home]#</span> ls</span><br><span class="line">vsftpd</span><br><span class="line">[root@bfdc203461de<span class="title"> home]#</span> cd<span class="title"> vsftpd/</span></span><br><span class="line"><span class="title">[root@bfdc203461de</span> vsftpd]#<span class="title"> ls</span></span><br><span class="line"><span class="title">index.html</span> <span class="title"> test</span></span><br><span class="line"><span class="title">[root@bfdc203461de</span> vsftpd]#<span class="title"> cd</span> test/</span><br><span class="line">[root@bfdc203461de<span class="title"> test]#</span> ls</span><br><span class="line">1.txt  2.txt</span><br><span class="line">[root@bfdc203461de<span class="title"> test]#</span> exit</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<p>使用<code>IE</code>浏览器 输入 <code>ftp://192.168.231.193/</code>可以查看到我们新建的文件</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">FTP 根位于 <span class="number">192.168</span>.<span class="number">231.193</span></span><br><span class="line">若要在文件资源管理器中查看此 FTP 站点，请单击“视图”，然后单击“在文件资源管理器中打开 FTP 站点”。 </span><br><span class="line"><span class="number">04</span><span class="regexp">/29/</span><span class="number">2021</span> <span class="number">01</span>:<span class="number">10</span>下午              <span class="number">0</span> <span class="number">1</span>.txt</span><br><span class="line"><span class="number">04</span><span class="regexp">/29/</span><span class="number">2021</span> <span class="number">01</span>:<span class="number">12</span>下午              <span class="number">0</span> <span class="number">2</span>.txt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/28/%E5%8E%9F%E5%9E%8B-Bean-%E8%A2%AB%E5%9B%BA%E5%AE%9A/" rel="prev" title="原型 Bean 被固定">
+      <i class="fa fa-chevron-left"></i> 原型 Bean 被固定
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.</span> <span class="nav-text">执行步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-docker-search-vsftpd"><span class="nav-number">1.1.</span> <span class="nav-text">查看 docker search vsftpd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F-docker-pull-fauria-vsftpd"><span class="nav-number">1.2.</span> <span class="nav-text">拉取镜像 docker pull fauria&#x2F;vsftpd</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E5%9C%B0%E5%9D%80-ipconfig"><span class="nav-number">2.</span> <span class="nav-text">获取本机地址 ipconfig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%AE%B9%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">运行容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8-docker-exec-i-t-vsftpd-bash"><span class="nav-number">4.</span> <span class="nav-text">进入容器 docker exec -i -t vsftpd bash</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="康盼&李婷"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">康盼&李婷</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/javakangpan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;javakangpan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/githup_163@163.com" title="E-Mail → githup_163@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fas fa-skull"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">康盼&李婷</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全站共33.3k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
