@@ -178,6 +178,73 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/08/Git-%E6%92%A4%E9%94%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="康盼&李婷">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/08/Git-%E6%92%A4%E9%94%80/" class="post-title-link" itemprop="url">Git 撤销</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-08 20:50:46 / 修改时间：21:57:22" itemprop="dateCreated datePublished" datetime="2021-05-08T20:50:46+08:00">2021-05-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="清除没有执行过-git-add-的文件"><a href="#清除没有执行过-git-add-的文件" class="headerlink" title="清除没有执行过 git add 的文件"></a>清除没有执行过 git add 的文件</h3><figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">生成一个文件: <span class="built_in">echo</span> <span class="string">&#x27;test&#x27;</span> &gt; <span class="number">1</span>.<span class="built_in">log</span> </span><br><span class="line">清除: git clean -fdx </span><br><span class="line">Removing <span class="number">1</span>.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h3 id="已被git-add暂存，但未执行git-commit提交，取消暂存"><a href="#已被git-add暂存，但未执行git-commit提交，取消暂存" class="headerlink" title="已被git add暂存，但未执行git commit提交，取消暂存"></a>已被git add暂存，但未执行git commit提交，取消暂存</h3><figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">查看状态: git <span class="keyword">status</span></span><br><span class="line">添加 <span class="number">1.</span><span class="built_in">log</span> : git add <span class="number">1.</span><span class="built_in">log</span></span><br><span class="line">执行命令：git rm --cached -r <span class="number">1.</span><span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h3 id="已被git-add暂存，未执行git-commit提交，取消所有文件的暂存"><a href="#已被git-add暂存，未执行git-commit提交，取消所有文件的暂存" class="headerlink" title="已被git add暂存，未执行git commit提交，取消所有文件的暂存"></a>已被git add暂存，未执行git commit提交，取消所有文件的暂存</h3><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git reset</span></span><br></pre></td></tr></table></figure>
+<h3 id="未暂存，未执行git-commit提交，撤销修改"><a href="#未暂存，未执行git-commit提交，撤销修改" class="headerlink" title="未暂存，未执行git commit提交，撤销修改"></a>未暂存，未执行git commit提交，撤销修改</h3><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">git checkout <span class="number">1</span>.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h3 id="已暂存，未执行git-commit提交，撤销修改及暂存"><a href="#已暂存，未执行git-commit提交，撤销修改及暂存" class="headerlink" title="已暂存，未执行git commit提交，撤销修改及暂存"></a>已暂存，未执行git commit提交，撤销修改及暂存</h3><figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">reset</span> <span class="number">1.</span><span class="built_in">log</span> 或者 git rm --cached -r <span class="number">1.</span><span class="built_in">log</span></span><br><span class="line">git checkout <span class="number">1.</span><span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h3 id="已经-git-commit，撤销commit，不撤销git-add，不删除改动的代码"><a href="#已经-git-commit，撤销commit，不撤销git-add，不删除改动的代码" class="headerlink" title="已经 git commit，撤销commit，不撤销git add，不删除改动的代码"></a>已经 git commit，撤销commit，不撤销git add，不删除改动的代码</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">HEAD</span>~<span class="number">1</span>表示上一次提交 HEAD~<span class="number">2</span> 表示两次提交前</span><br><span class="line"><span class="attribute">git</span> reset --soft HEAD~<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="已经-git-commit，撤销commit，撤销git-add，删除改动的代码"><a href="#已经-git-commit，撤销commit，撤销git-add，删除改动的代码" class="headerlink" title="已经 git commit，撤销commit，撤销git add，删除改动的代码"></a>已经 git commit，撤销commit，撤销git add，删除改动的代码</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">HEAD</span>~<span class="number">1</span>表示上一次提交 HEAD~<span class="number">2</span> 表示两次提交前</span><br><span class="line"><span class="attribute">git</span> reset --hard HEAD~<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><code>HEAD~1</code> 可以改成提交的<code>ID(sha1 hash值)</code>，<code>ID</code>也可以简写</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git</span> log --pretty=oneline</span><br><span class="line"><span class="attribute">ff4a1ea8ea206bcef41bc2ea8818470497af46c5</span> (HEAD -&gt; master) 第一次提交</span><br><span class="line"><span class="attribute">git</span> reset --hard ff<span class="number">4</span>a<span class="number">1</span>ea<span class="number">8</span>ea<span class="number">206</span>bcef<span class="number">41</span>bc<span class="number">2</span>ea<span class="number">8818470497</span>af<span class="number">46</span>c<span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">git</span> log --pretty=format:<span class="string">&quot;哈希值：%h 作者： %an, 时间：%ar : 备注：%s&quot;</span></span><br></pre></td></tr></table></figure>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/06/Qualifier/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -814,78 +881,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/21/mybatis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼&李婷">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/21/mybatis/" class="post-title-link" itemprop="url">mybatis</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-21 21:37:01" itemprop="dateCreated datePublished" datetime="2021-04-21T21:37:01+08:00">2021-04-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-24 17:41:54" itemprop="dateModified" datetime="2021-04-24T17:41:54+08:00">2021-04-24</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1807381939&auto=1&height=66"></iframe>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/21/mybatis/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -956,14 +951,14 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1007,7 +1002,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共35.6k字</span>
+  <span class="post-count">全站共35.9k字</span>
 </div>
 
         

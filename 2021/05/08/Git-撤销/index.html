@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="看下 org.springframework.util 包下的 ClassUtils public abstract class ClassUtils &amp;#123;	private static final char PACKAGE_SEPARATOR &#x3D; &amp;#x27;.&amp;#x27;;&amp;#125;public static String getPackageName(String fqClassN">
+  <meta name="description" content="清除没有执行过 git add 的文件生成一个文件: echo &amp;#x27;test&amp;#x27; &gt; 1.log 清除: git clean -fdx Removing 1.log 已被git add暂存，但未执行git commit提交，取消暂存查看状态: git status添加 1.log : git add 1.log执行命令：git rm --cached -r 1.log 已被g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Some Problem About Spring">
-<meta property="og:url" content="http://example.com/2021/04/26/Some-Problem-About-Spring/index.html">
+<meta property="og:title" content="Git 撤销">
+<meta property="og:url" content="http://example.com/2021/05/08/Git-%E6%92%A4%E9%94%80/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="看下 org.springframework.util 包下的 ClassUtils public abstract class ClassUtils &amp;#123;	private static final char PACKAGE_SEPARATOR &#x3D; &amp;#x27;.&amp;#x27;;&amp;#125;public static String getPackageName(String fqClassN">
+<meta property="og:description" content="清除没有执行过 git add 的文件生成一个文件: echo &amp;#x27;test&amp;#x27; &gt; 1.log 清除: git clean -fdx Removing 1.log 已被git add暂存，但未执行git commit提交，取消暂存查看状态: git status添加 1.log : git add 1.log执行命令：git rm --cached -r 1.log 已被g">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-26T13:26:53.000Z">
-<meta property="article:modified_time" content="2021-04-26T23:15:36.244Z">
+<meta property="article:published_time" content="2021-05-08T12:50:46.000Z">
+<meta property="article:modified_time" content="2021-05-08T13:57:22.217Z">
 <meta property="article:author" content="康盼&amp;李婷">
-<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/04/26/Some-Problem-About-Spring/">
+<link rel="canonical" href="http://example.com/2021/05/08/Git-%E6%92%A4%E9%94%80/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Some Problem About Spring | </title>
+  <title>Git 撤销 | </title>
   
 
 
@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/26/Some-Problem-About-Spring/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/08/Git-%E6%92%A4%E9%94%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Some Problem About Spring
+          Git 撤销
         </h1>
 
         <div class="post-meta">
@@ -206,16 +206,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-04-26 21:26:53" itemprop="dateCreated datePublished" datetime="2021-04-26T21:26:53+08:00">2021-04-26</time>
+              <time title="创建时间：2021-05-08 20:50:46 / 修改时间：21:57:22" itemprop="dateCreated datePublished" datetime="2021-05-08T20:50:46+08:00">2021-05-08</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-27 07:15:36" itemprop="dateModified" datetime="2021-04-27T07:15:36+08:00">2021-04-27</time>
-              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -235,46 +229,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>看下 <code>org.springframework.util</code> 包下的 <code>ClassUtils</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassUtils</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">char</span> PACKAGE_SEPARATOR = <span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getPackageName</span><span class="params">(String fqClassName)</span> </span>&#123;</span><br><span class="line">    Assert.notNull(fqClassName, <span class="string">&quot;Class name must not be null&quot;</span>);</span><br><span class="line">    <span class="keyword">int</span> lastDotIndex = fqClassName.lastIndexOf(PACKAGE_SEPARATOR);</span><br><span class="line">    <span class="keyword">return</span> (lastDotIndex != -<span class="number">1</span> ? fqClassName.substring(<span class="number">0</span>, lastDotIndex) : <span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>如果 <code>fqClassName</code> 参数是 <code>com.java</code> 那么返回结果为 <code>com</code> ，这里解答了我一个疑问，比如 <code>Spring</code> 启动类所在的包 和 <code>Controller</code>包 不在同一个包下，导致找不到 <code>Controller</code> 类。这里写下正常的包结构</p>
-<ul>
-<li>com<ul>
-<li>controller</li>
-<li>model</li>
-<li>service</li>
-<li>mapper</li>
-<li>Application 启动类</li>
-</ul>
-</li>
-</ul>
-<p>如果 <code>Application</code> 启动类 在其它包下，例如放在 <code>app</code> 包下，那么启动会报错，找不到对应的 <code>Bean</code></p>
-<ul>
-<li>com<ul>
-<li>controller</li>
-<li>model</li>
-<li>service</li>
-<li>mapper</li>
-</ul>
-</li>
-<li>app<ul>
-<li>Application 启动类</li>
-</ul>
-</li>
-</ul>
-<p>那为啥在同一个包下就可以找到呢</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>来看下 <code>@SpringBootApplication</code> 注解，这里省略了其它代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ComponentScan(excludeFilters = &#123; @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),</span></span><br><span class="line"><span class="meta">public @interface SpringBootApplication &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-<p><code>@SpringBootApplication</code> 开启了很多功能，其中一个关键功能就是 <code>@ComponentScan</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ComponentScan &#123;</span><br><span class="line">	<span class="meta">@AliasFor(&quot;basePackages&quot;)</span></span><br><span class="line">	String[] value() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里 <code>basePackages</code> 默认是 <code>&#123;&#125;</code>，那么默认是什么包呢，先看下 <code>ConfigurationClassParser</code> 类的其中一段代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> ComponentScanAnnotationParser componentScanParser;</span><br><span class="line"><span class="comment">// 拿到该类上面所有的@ComponentScan注解</span></span><br><span class="line">Set&lt;AnnotationAttributes&gt; componentScans = AnnotationConfigUtils.attributesForRepeatable(</span><br><span class="line">				sourceClass.getMetadata(), ComponentScans.class, ComponentScan.class);</span><br><span class="line">                </span><br><span class="line"><span class="keyword">for</span> (AnnotationAttributes componentScan : componentScans) &#123;</span><br><span class="line"></span><br><span class="line">    Set&lt;BeanDefinitionHolder&gt; scannedBeanDefinitions =</span><br><span class="line">            <span class="keyword">this</span>.componentScanParser.parse(componentScan, sourceClass.getMetadata().getClassName());</span><br><span class="line"></span><br><span class="line">&#125;              </span><br></pre></td></tr></table></figure>
-<p>看下  <code>this.componentScanParser.parse()</code>, 这里涉及 <code>ComponentScanAnnotationParser</code> 类，以下省略了其它代码，看下它的 <code>parse</code> 方法，<code>declaringClass</code> 默认传的 <code>sourceClass.getMetadata().getClassName()</code> 也就是所在的包名</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComponentScanAnnotationParser</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Set&lt;BeanDefinitionHolder&gt; <span class="title">parse</span><span class="params">(AnnotationAttributes componentScan, <span class="keyword">final</span> String declaringClass)</span> </span>&#123;</span><br><span class="line">        Set&lt;String&gt; basePackages = <span class="keyword">new</span> LinkedHashSet&lt;&gt;();</span><br><span class="line">		String[] basePackagesArray = componentScan.getStringArray(<span class="string">&quot;basePackages&quot;</span>);</span><br><span class="line">        	<span class="keyword">if</span> (basePackages.isEmpty()) &#123;</span><br><span class="line">			basePackages.add(ClassUtils.getPackageName(declaringClass));</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>看到这应该明白了。</p>
-
+        <h3 id="清除没有执行过-git-add-的文件"><a href="#清除没有执行过-git-add-的文件" class="headerlink" title="清除没有执行过 git add 的文件"></a>清除没有执行过 git add 的文件</h3><figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">生成一个文件: <span class="built_in">echo</span> <span class="string">&#x27;test&#x27;</span> &gt; <span class="number">1</span>.<span class="built_in">log</span> </span><br><span class="line">清除: git clean -fdx </span><br><span class="line">Removing <span class="number">1</span>.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h3 id="已被git-add暂存，但未执行git-commit提交，取消暂存"><a href="#已被git-add暂存，但未执行git-commit提交，取消暂存" class="headerlink" title="已被git add暂存，但未执行git commit提交，取消暂存"></a>已被git add暂存，但未执行git commit提交，取消暂存</h3><figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">查看状态: git <span class="keyword">status</span></span><br><span class="line">添加 <span class="number">1.</span><span class="built_in">log</span> : git add <span class="number">1.</span><span class="built_in">log</span></span><br><span class="line">执行命令：git rm --cached -r <span class="number">1.</span><span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h3 id="已被git-add暂存，未执行git-commit提交，取消所有文件的暂存"><a href="#已被git-add暂存，未执行git-commit提交，取消所有文件的暂存" class="headerlink" title="已被git add暂存，未执行git commit提交，取消所有文件的暂存"></a>已被git add暂存，未执行git commit提交，取消所有文件的暂存</h3><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git reset</span></span><br></pre></td></tr></table></figure>
+<h3 id="未暂存，未执行git-commit提交，撤销修改"><a href="#未暂存，未执行git-commit提交，撤销修改" class="headerlink" title="未暂存，未执行git commit提交，撤销修改"></a>未暂存，未执行git commit提交，撤销修改</h3><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">git checkout <span class="number">1</span>.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h3 id="已暂存，未执行git-commit提交，撤销修改及暂存"><a href="#已暂存，未执行git-commit提交，撤销修改及暂存" class="headerlink" title="已暂存，未执行git commit提交，撤销修改及暂存"></a>已暂存，未执行git commit提交，撤销修改及暂存</h3><figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">reset</span> <span class="number">1.</span><span class="built_in">log</span> 或者 git rm --cached -r <span class="number">1.</span><span class="built_in">log</span></span><br><span class="line">git checkout <span class="number">1.</span><span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h3 id="已经-git-commit，撤销commit，不撤销git-add，不删除改动的代码"><a href="#已经-git-commit，撤销commit，不撤销git-add，不删除改动的代码" class="headerlink" title="已经 git commit，撤销commit，不撤销git add，不删除改动的代码"></a>已经 git commit，撤销commit，不撤销git add，不删除改动的代码</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">HEAD</span>~<span class="number">1</span>表示上一次提交 HEAD~<span class="number">2</span> 表示两次提交前</span><br><span class="line"><span class="attribute">git</span> reset --soft HEAD~<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="已经-git-commit，撤销commit，撤销git-add，删除改动的代码"><a href="#已经-git-commit，撤销commit，撤销git-add，删除改动的代码" class="headerlink" title="已经 git commit，撤销commit，撤销git add，删除改动的代码"></a>已经 git commit，撤销commit，撤销git add，删除改动的代码</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">HEAD</span>~<span class="number">1</span>表示上一次提交 HEAD~<span class="number">2</span> 表示两次提交前</span><br><span class="line"><span class="attribute">git</span> reset --hard HEAD~<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><code>HEAD~1</code> 可以改成提交的<code>ID(sha1 hash值)</code>，<code>ID</code>也可以简写</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git</span> log --pretty=oneline</span><br><span class="line"><span class="attribute">ff4a1ea8ea206bcef41bc2ea8818470497af46c5</span> (HEAD -&gt; master) 第一次提交</span><br><span class="line"><span class="attribute">git</span> reset --hard ff<span class="number">4</span>a<span class="number">1</span>ea<span class="number">8</span>ea<span class="number">206</span>bcef<span class="number">41</span>bc<span class="number">2</span>ea<span class="number">8818470497</span>af<span class="number">46</span>c<span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">git</span> log --pretty=format:<span class="string">&quot;哈希值：%h 作者： %an, 时间：%ar : 备注：%s&quot;</span></span><br></pre></td></tr></table></figure>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
     </div>
 
     
@@ -283,7 +247,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Spring/" rel="tag"># Spring</a>
+              <a href="/tags/Git/" rel="tag"># Git</a>
           </div>
 
         
@@ -292,13 +256,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/24/List-String-Map/" rel="prev" title="List-String-Map">
-      <i class="fa fa-chevron-left"></i> List-String-Map
+    <a href="/2021/05/06/Qualifier/" rel="prev" title="Qualifier之Bean的名称首字母大写还是小写？">
+      <i class="fa fa-chevron-left"></i> Qualifier之Bean的名称首字母大写还是小写？
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/04/27/Aui/" rel="next" title="Aui">
-      Aui <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -357,6 +318,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%85%E9%99%A4%E6%B2%A1%E6%9C%89%E6%89%A7%E8%A1%8C%E8%BF%87-git-add-%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">清除没有执行过 git add 的文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E8%A2%ABgit-add%E6%9A%82%E5%AD%98%EF%BC%8C%E4%BD%86%E6%9C%AA%E6%89%A7%E8%A1%8Cgit-commit%E6%8F%90%E4%BA%A4%EF%BC%8C%E5%8F%96%E6%B6%88%E6%9A%82%E5%AD%98"><span class="nav-number">2.</span> <span class="nav-text">已被git add暂存，但未执行git commit提交，取消暂存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E8%A2%ABgit-add%E6%9A%82%E5%AD%98%EF%BC%8C%E6%9C%AA%E6%89%A7%E8%A1%8Cgit-commit%E6%8F%90%E4%BA%A4%EF%BC%8C%E5%8F%96%E6%B6%88%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%E7%9A%84%E6%9A%82%E5%AD%98"><span class="nav-number">3.</span> <span class="nav-text">已被git add暂存，未执行git commit提交，取消所有文件的暂存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E6%9A%82%E5%AD%98%EF%BC%8C%E6%9C%AA%E6%89%A7%E8%A1%8Cgit-commit%E6%8F%90%E4%BA%A4%EF%BC%8C%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9"><span class="nav-number">4.</span> <span class="nav-text">未暂存，未执行git commit提交，撤销修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E6%9A%82%E5%AD%98%EF%BC%8C%E6%9C%AA%E6%89%A7%E8%A1%8Cgit-commit%E6%8F%90%E4%BA%A4%EF%BC%8C%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9%E5%8F%8A%E6%9A%82%E5%AD%98"><span class="nav-number">5.</span> <span class="nav-text">已暂存，未执行git commit提交，撤销修改及暂存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E7%BB%8F-git-commit%EF%BC%8C%E6%92%A4%E9%94%80commit%EF%BC%8C%E4%B8%8D%E6%92%A4%E9%94%80git-add%EF%BC%8C%E4%B8%8D%E5%88%A0%E9%99%A4%E6%94%B9%E5%8A%A8%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="nav-number">6.</span> <span class="nav-text">已经 git commit，撤销commit，不撤销git add，不删除改动的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E7%BB%8F-git-commit%EF%BC%8C%E6%92%A4%E9%94%80commit%EF%BC%8C%E6%92%A4%E9%94%80git-add%EF%BC%8C%E5%88%A0%E9%99%A4%E6%94%B9%E5%8A%A8%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="nav-number">7.</span> <span class="nav-text">已经 git commit，撤销commit，撤销git add，删除改动的代码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
