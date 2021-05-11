@@ -276,10 +276,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-05-09 21:46:25 / 修改时间：22:08:33" itemprop="dateCreated datePublished" datetime="2021-05-09T21:46:25+08:00">2021-05-09</time>
+              <time title="创建时间：2021-05-09 21:46:25" itemprop="dateCreated datePublished" datetime="2021-05-09T21:46:25+08:00">2021-05-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-11 20:16:37" itemprop="dateModified" datetime="2021-05-11T20:16:37+08:00">2021-05-11</time>
+              </span>
 
           
 
@@ -292,8 +298,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="常用工具类"><a href="#常用工具类" class="headerlink" title="常用工具类"></a>常用工具类</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ApplicationRunner</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Callback used to run the bean.</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> args incoming application arguments</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> Exception on error</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">(ApplicationArguments args)</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CommandLineRunner</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Callback used to run the bean.</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> args incoming main method arguments</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> Exception on error</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">(String... args)</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          Here's something encrypted, password is required to continue reading.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/05/09/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E6%B2%A1%E6%9C%89/#more" rel="contents">
@@ -343,10 +348,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-05-08 20:50:46 / 修改时间：21:57:22" itemprop="dateCreated datePublished" datetime="2021-05-08T20:50:46+08:00">2021-05-08</time>
+              <time title="创建时间：2021-05-08 20:50:46" itemprop="dateCreated datePublished" datetime="2021-05-08T20:50:46+08:00">2021-05-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-11 20:17:17" itemprop="dateModified" datetime="2021-05-11T20:17:17+08:00">2021-05-11</time>
+              </span>
 
           
 
@@ -359,16 +370,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="清除没有执行过-git-add-的文件"><a href="#清除没有执行过-git-add-的文件" class="headerlink" title="清除没有执行过 git add 的文件"></a>清除没有执行过 git add 的文件</h3><figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">生成一个文件: <span class="built_in">echo</span> <span class="string">&#x27;test&#x27;</span> &gt; <span class="number">1</span>.<span class="built_in">log</span> </span><br><span class="line">清除: git clean -fdx </span><br><span class="line">Removing <span class="number">1</span>.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-<h3 id="已被git-add暂存，但未执行git-commit提交，取消暂存"><a href="#已被git-add暂存，但未执行git-commit提交，取消暂存" class="headerlink" title="已被git add暂存，但未执行git commit提交，取消暂存"></a>已被git add暂存，但未执行git commit提交，取消暂存</h3><figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">查看状态: git <span class="keyword">status</span></span><br><span class="line">添加 <span class="number">1.</span><span class="built_in">log</span> : git add <span class="number">1.</span><span class="built_in">log</span></span><br><span class="line">执行命令：git rm --cached -r <span class="number">1.</span><span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-<h3 id="已被git-add暂存，未执行git-commit提交，取消所有文件的暂存"><a href="#已被git-add暂存，未执行git-commit提交，取消所有文件的暂存" class="headerlink" title="已被git add暂存，未执行git commit提交，取消所有文件的暂存"></a>已被git add暂存，未执行git commit提交，取消所有文件的暂存</h3><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git reset</span></span><br></pre></td></tr></table></figure>
-<h3 id="未暂存，未执行git-commit提交，撤销修改"><a href="#未暂存，未执行git-commit提交，撤销修改" class="headerlink" title="未暂存，未执行git commit提交，撤销修改"></a>未暂存，未执行git commit提交，撤销修改</h3><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">git checkout <span class="number">1</span>.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-<h3 id="已暂存，未执行git-commit提交，撤销修改及暂存"><a href="#已暂存，未执行git-commit提交，撤销修改及暂存" class="headerlink" title="已暂存，未执行git commit提交，撤销修改及暂存"></a>已暂存，未执行git commit提交，撤销修改及暂存</h3><figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">reset</span> <span class="number">1.</span><span class="built_in">log</span> 或者 git rm --cached -r <span class="number">1.</span><span class="built_in">log</span></span><br><span class="line">git checkout <span class="number">1.</span><span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-<h3 id="已经-git-commit，撤销commit，不撤销git-add，不删除改动的代码"><a href="#已经-git-commit，撤销commit，不撤销git-add，不删除改动的代码" class="headerlink" title="已经 git commit，撤销commit，不撤销git add，不删除改动的代码"></a>已经 git commit，撤销commit，不撤销git add，不删除改动的代码</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">HEAD</span>~<span class="number">1</span>表示上一次提交 HEAD~<span class="number">2</span> 表示两次提交前</span><br><span class="line"><span class="attribute">git</span> reset --soft HEAD~<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="已经-git-commit，撤销commit，撤销git-add，删除改动的代码"><a href="#已经-git-commit，撤销commit，撤销git-add，删除改动的代码" class="headerlink" title="已经 git commit，撤销commit，撤销git add，删除改动的代码"></a>已经 git commit，撤销commit，撤销git add，删除改动的代码</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">HEAD</span>~<span class="number">1</span>表示上一次提交 HEAD~<span class="number">2</span> 表示两次提交前</span><br><span class="line"><span class="attribute">git</span> reset --hard HEAD~<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p><code>HEAD~1</code> 可以改成提交的<code>ID(sha1 hash值)</code>，<code>ID</code>也可以简写</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git</span> log --pretty=oneline</span><br><span class="line"><span class="attribute">ff4a1ea8ea206bcef41bc2ea8818470497af46c5</span> (HEAD -&gt; master) 第一次提交</span><br><span class="line"><span class="attribute">git</span> reset --hard ff<span class="number">4</span>a<span class="number">1</span>ea<span class="number">8</span>ea<span class="number">206</span>bcef<span class="number">41</span>bc<span class="number">2</span>ea<span class="number">8818470497</span>af<span class="number">46</span>c<span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">git</span> log --pretty=format:<span class="string">&quot;哈希值：%h 作者： %an, 时间：%ar : 备注：%s&quot;</span></span><br></pre></td></tr></table></figure>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+          Here's something encrypted, password is required to continue reading.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/08/Git-%E6%92%A4%E9%94%80/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -777,7 +787,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-28 11:02:53" itemprop="dateModified" datetime="2021-04-28T11:02:53+08:00">2021-04-28</time>
+                <time title="修改时间：2021-05-11 20:15:44" itemprop="dateModified" datetime="2021-05-11T20:15:44+08:00">2021-05-11</time>
               </span>
 
           
@@ -791,10 +801,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>做了几个迭代的前端，这里总结下自己学的东西</p>
-</blockquote>
-<h3 id="页面格式"><a href="#页面格式" class="headerlink" title="页面格式"></a>页面格式</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span>这里写HTML元素<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> 组件 <span class="keyword">from</span> <span class="string">&#x27;文件路径&#x27;</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"> components:&#123;组件引入&#125;,</span><br><span class="line"> computed:&#123;计算属性&#125;,</span><br><span class="line"> watch:&#123;监听&#125;,</span><br><span class="line"><span class="javascript"> <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;属性定义及初始化&#125;&#125;,</span></span><br><span class="line"><span class="javascript"> <span class="function"><span class="title">created</span>(<span class="params"></span>)</span> &#123;实例创建完之后的钩子函数&#125;,</span></span><br><span class="line"><span class="javascript"> <span class="function"><span class="title">mounted</span>(<span class="params"></span>)</span>&#123;页面完成后执行的钩子函数，实时监控数据，数据变化实时更新DOM&#125;,</span></span><br><span class="line"><span class="javascript"> <span class="function"><span class="title">destroyed</span>(<span class="params"></span>)</span>&#123;实例销毁执行的钩子函数&#125;,</span></span><br><span class="line"> methods:&#123;函数&#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span>样式<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          Here's something encrypted, password is required to continue reading.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/04/27/Aui/#more" rel="contents">
@@ -1011,7 +1018,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共36.4k字</span>
+  <span class="post-count">全站共33k字</span>
 </div>
 
         
