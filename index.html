@@ -178,6 +178,74 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/15/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="康盼&李婷">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/15/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%90%88/" class="post-title-link" itemprop="url">两数之合</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-15 13:35:58 / 修改时间：14:21:11" itemprop="dateCreated datePublished" datetime="2021-05-15T13:35:58+08:00">2021-05-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>数组 <code>[2,2,3,4,9,3]</code> 给一个元素 <code>6</code> 找出数组中两个元素之和等于它，并返回数组坐标。思路：使用<code>map</code>，<code>key</code>用来记录<code>arr[i]</code>的值，<code>value</code>用来记录对应的下标，使用 <code>containsKey</code> 或者 <code>get</code> 进行逻辑判断 <code>arr[?] = target - arr[??]</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@BenchmarkMode(Mode.Throughput)</span></span><br><span class="line"><span class="meta">@Warmup(iterations = 3)</span></span><br><span class="line"><span class="meta">@Measurement(iterations = 10, time = 5, timeUnit = TimeUnit.SECONDS)</span></span><br><span class="line"><span class="meta">@OutputTimeUnit(TimeUnit.MILLISECONDS)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFindArrayIndex</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Benchmark</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">int</span>[] findIndexOfArray1() &#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">3</span>&#125;; <span class="keyword">int</span> target = <span class="number">6</span>;</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (map.containsKey(target - arr[i])) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;map.get(target - arr[i]),i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(arr[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Benchmark</span></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">int</span>[] findIndexOfArray2() &#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">3</span>&#125;; <span class="keyword">int</span> target = <span class="number">6</span>;</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (map.get(arr[i]) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;map.get(arr[i]), i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(target - arr[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> RunnerException </span>&#123;</span><br><span class="line">        Options opt = <span class="keyword">new</span> OptionsBuilder()</span><br><span class="line">                .include(TestFindArrayIndex.class.getSimpleName())</span><br><span class="line">                .output(<span class="string">&quot;Benchmark.log&quot;</span>)</span><br><span class="line">                .forks(<span class="number">1</span>)</span><br><span class="line">                .build();</span><br><span class="line">        <span class="keyword">new</span> Runner(opt).run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>给出了两个性能差不多的方案，使用 <code>JMH</code> 性能测试，<a target="_blank" rel="noopener" href="http://hg.openjdk.java.net/code-tools/jmh/file/tip/jmh-samples/src/main/java/org/openjdk/jmh/samples/">更多例子参考</a> ，影响基准测试的因素比较多，包括代码预热、编译器动态优化、资源回收（GC）、文件缓存、电源、其他程序，JVM的VM选项等等，<a target="_blank" rel="noopener" href="http://tutorials.jenkov.com/java-performance/jmh.html">详细参考</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/15/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%90%88/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/10/json-%E5%A4%84%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -809,78 +877,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/26/Some-Problem-About-Spring/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="康盼&李婷">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/26/Some-Problem-About-Spring/" class="post-title-link" itemprop="url">ComponentScan</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-26 21:26:53" itemprop="dateCreated datePublished" datetime="2021-04-26T21:26:53+08:00">2021-04-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-11 20:26:07" itemprop="dateModified" datetime="2021-05-11T20:26:07+08:00">2021-05-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/04/26/Some-Problem-About-Spring/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -951,7 +947,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1002,7 +998,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">全站共26.9k字</span>
+  <span class="post-count">全站共27.9k字</span>
 </div>
 
         
